@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@200&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@600&display=swap');
+
+
+
+* {
+    box sizing: border-box;
+    font-family: 'Urbanist', sans-serif;
+    color: whitesmoke;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.nav ul {
+    margin: 0;
+}
+
+.nav li {
+    display: inline;
+}
+
+.nav a {
+    display: inline-block;
+    padding: 1em;
+    color: white;
+    text-decoration: none;
+}
+
+.main-nav {
+    text-align: center;
+    font-size: 1em;
+    font-weight: lighter;
+    border-bottom: 1px solid #777;
+    border: 1px;
+}
+
+.main-nav li {
+    padding: 0 5%;
+}
+
+.nav a:hover {
+    background-color: rgba(255, 255, 255, .3)
+}
+
+.main-header {
+    background-image: url(https://rawcdn.githack.com/4060269/NgunnawalCountryWebDev/acd81713929e874598bffc8d20f2ed3be696c257/Images/Ngunnawal-country-banner.png);
+    background-position: 100% 100%;
+    background-size: cover;
+    padding-bottom: 30px;
+}
+
+.band-name {
+    text-align: center;
+    color: whitesmoke;
+    font-family: 'Azeret Mono', monospace;
+    margin: 0;
+    font-size: 3em;
+}
+
+.band-name-large {
+    font-size: 4em;
+}
+
+.content-section {
+    margin: 1em;
+
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 6em;
+}
+
+.section-header {
+    font-family: 'Azeret Mono', monospace;
+    color: whitesmoke;
+    text-decoration: none;
+    text-align: center;
+    font-size: 2.5em;
+}
+
+.about-logic-image {
+    float: left;
+    width: 20%;
+    height: 100%;
+    margin: 15px;
+    border-radius: 20%;
+}
+
+.main-footer {
+    background-color: #ac5c34;
+    color: White;
+    padding: .25em 0;
+}
+
+.main-footer-container {
+    display: flex;
+    align-items: center;
+}
+
+.main-footer-container ul {
+    flex-grow: 1;
+    text-align: right;
+}
+
+.footer-nav li {
+    padding: 0 .5em;
+}
+
+.footer-nav img {
+    width: 30px;
+    height: 30px;
+}
+
+.btn {
+    text-align: center;
+    vertical-align: middle;
+    padding: .67em;
+    cursor: pointer;
+}
+
+body {
+    background-color: #121212;
+}
+
+.btn-header {
+    display: block;
+    margin: 0 auto;
+    color: white;
+    border: 2px solid #333;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 1;
+    font-size: 1em;
+    font-weight: lighter;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.btn-header:hover {
+    background-color: rgba(255, 255, 255, .3)
+}
+
+.btn-play {
+    display: block;
+    margin: 0 auto;
+    color: aliceblue;
+}
+
+.album-row {
+    border-bottom: 1px solid whitesmoke;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+}
+
+.album-row:last-child {
+    border-bottom: none;
+}
+
+.album-item {
+    display: inline-block;
+    padding-right: .5em;
+}
+
+.album-name {
+    font-weight: bolder;
+    width: 24%;
+}
+
+.album-date {
+    width: 11%;
+}
+
+.album-quote {
+    width: 42%;
+}
+
+.album-button {
+    position: relative;
+    top: -20px;
+    max-width: 19%;
+
+}
+
+.button-primary {
+    color: whitesmoke;
+    background-color: #2cb8b9;
+    border: none;
+    border-radius: .3em;
+    font-weight: bold;
+}
+
+.button-primary:hover {
+    background-color: #777;
+}
+
+.btn-danger {
+    color: white;
+    background-color: red;
+    border: none;
+    border-radius: .3em;
+}
+
+.btn-danger:hover {
+    background-color: darkred;
+}
+
+.btn-purchase {
+    display: block;
+    margin: 40px auto 80px auto;
+    font-size: 1.75em;
+}

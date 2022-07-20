@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="keywords" content="Ngunnawal, Aboriginal, Indigenous, Gallery, History" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+
+  <meta name="description"
+    content="This is a website that focuses on the history of the Aboriginal people living in the Canberra region, the Ngunnawal people." />
+
+  <meta name="author" content="Rahil Chand" />
+
+  <!-- meta tags have information about the data on the page -->
+  <!-- <meta name="keywords" content="HTML, CSS, JavaScript"> used for search engines to make meaning of your page -->
+  <!-- <meta http-equiv="refresh" content="30"> refreshs the doc every 30secs -->
+  <!-- mulitple meta tags can be used -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    * {box-sizing:border-box}
+
+    /* Slideshow container */
+    .slideshow-container {
+      max-width: 1000px;
+      position: relative;
+      margin: auto;
+    }
+
+    /* Hide the images by default */
+    .mySlides {
+      display: none;
+    }
+
+    /* Next & previous buttons */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      margin-top: -22px;
+      padding: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    /* Caption text */
+    .text {
+      color: #f2f2f2;
+      font-size: 15px;
+      padding: 8px 12px;
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+      color: #f2f2f2;
+      font-size: 12px;
+      padding: 8px 12px;
+      position: absolute;
+      top: 0;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+
+    .active, .dot:hover {
+      background-color: #717171;
+    }
+
+    /* Fading animation */
+    .fade {
+      animation-name: fade;
+      animation-duration: 1.5s;
+    }
+
+    @keyframes fade {
+      from {opacity: .4}
+      to {opacity: 1}
+    }
+  </style>
+
+  <title>Ngunnawal Country | Gallery</title>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg" style="background-image: url(Images/Requisites/Ngunnawal-country-banner.png);
+    background-size: 1000px 150px;
+    background-position: right;
+    background-repeat: repeat;
+    ">
+
+
+      <img class="navbar-brand"
+        src="/Images/Requisites/Ngunnawal-logo.png"
+        width="40px" height="65px" class="navbar-brand" href="#"></a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+
+          <a class="nav-item nav-link active" style="color: whitesmoke;" href="index.html">Home
+            <span class="sr-only">(current)</span></a>
+
+          <a class="nav-item nav-link" style="color: whitesmoke;" href="history.html">History</a>
+
+          <a class="nav-item nav-link" style="color: whitesmoke;" href="gallery.html">Gallery</a>
+
+          <a class="nav-item nav-link" style="color: whitesmoke;" href="contact.html">Contact Us</a>
+
+          <div class="container-fluid">
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <h1 class="band-name band-name-large" style="padding-top: 20px; padding-bottom: 20px;">Ngunnawal Country</h1>
+  </header>
+
+    <h2 class="section-header">Gallery</h2>
+      <div class="slideshow-container">
+
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides">
+          <div class="numbertext">1 / 2</div>
+          <img src="/Images/Content/ngunnawal-country-colours.png" style="width:100%">
+          <div class="text">Ngunnawal Country Colours</div>
+        </div>
+
+        <div class="mySlides">
+          <div class="numbertext">2 / 2</div>
+          <img src="Images/Content/ngunnawal-spelio.png" style="width:100%">
+          <div class="text">Bridge over Ginnindera Creek</div>
+        </div>
+
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+      <br>
+
+      <!-- The dots/circles -->
+      <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+      </div>
+
+
+    <footer class="main-footer">
+        <div class="container main-footer-container">
+    
+          <h3 style="font-size: 1.5em;" class="band-name">Ngunnawal Country</h3>
+          <ul class="nav footer-nav">
+    
+            <li>
+              <a>
+                We acknowledge the Traditional Custodians of the ACT, the Ngunnawal
+                people. We acknowledge and respect their continuing culture and the
+                contribution they make to the life of this city and this region.
+              </a>
+            </li>
+    
+            <li style="width: 100%;">
+              <a href="https://www.act.gov.au/ngunnawal-country"
+              style="background-size:contain">
+    
+                <img src="Images/Footer/government-icon.png"/>
+              </a>
+            </li>
+          </ul>
+        </div>
+    </footer>
+
+  <script>
+    let slideIndex = 1;
+      showSlides(slideIndex);
+
+      // Next/previous controls
+      function plusSlides(n) {
+        showSlides(slideIndex += n);
+      }
+
+      // Thumbnail image controls
+      function currentSlide(n) {
+        showSlides(slideIndex = n);
+      }
+
+      function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+      }
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>
