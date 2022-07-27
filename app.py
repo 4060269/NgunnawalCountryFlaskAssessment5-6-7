@@ -9,8 +9,8 @@ db = SQLAlchemy(app)            # creates the db object using the configuration
 
 
 @app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+def aboutpage():  # put application's code here
+    return render_template("index.html", title="Ngunnawal Country | About")
 
 
 if __name__ == '__main__':
