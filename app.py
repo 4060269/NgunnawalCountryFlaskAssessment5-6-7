@@ -2,13 +2,13 @@ from flask import Flask
 from flask import Flask, render_template
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
-from models import Contact
-from forms import ContactForm
 
 app = Flask(__name__)
 app.config.from_object(Config)  # loads the configuration for the database
 db = SQLAlchemy(app)            # creates the db object using the configuration
 
+from models import Contact
+from forms import ContactForm
 
 @app.route('/')
 def aboutpage():  # put application's code here
