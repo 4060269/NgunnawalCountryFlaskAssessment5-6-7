@@ -2,6 +2,7 @@ alembic>=1.0.10
 altgraph>=0.16.1
 click>=7.0
 ecdsa>=0.13.2
+email-validator>=1.2.1
 esptool>=2.6
 Flask>=1.0.3
 Flask-Login>=0.4.1
