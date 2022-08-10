@@ -1,50 +1,50 @@
 from flask import Flask
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect     # from prototypes or framework, create an instance
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config.from_object(Config)  # loads the configuration for the database
-db = SQLAlchemy(app)            # creates the db object using the configuration
+app.config.from_object(Config)             # loads the configuration for the database
+db = SQLAlchemy(app)                       # creates the db object using the configuration
 
 from models import Contact
 from forms import ContactForm
 from models import todo #insults
 
-@app.route('/')
-def aboutpage():  # put application's code here
-    return render_template("index.html", title="Ngunnawal Country | About")
+@app.route('/')                                                                # when this url is accessed
+def aboutpage():                                                               # define function
+    return render_template("index.html", title="Ngunnawal Country | About")    # send back much of index html and change the title via jinja
 
-@app.route("/contact.html", methods=["POST", "GET"])
+@app.route("/contact.html", methods=["POST", "GET"])                                                 # user requests contact html, allows data back to the serve
 def contact():
-    form = ContactForm()
-    if form.validate_on_submit():
-        new_contact = Contact(name=form.name.data, email=form.email.data, message=form.message.data)
-        db.session.add(new_contact)
-        db.session.commit()
-    return render_template("contact.html", title ="Contact Us", form=form)
+    form = ContactForm()                                                                             # load contact from models and store it locally
+    if form.validate_on_submit():                                                                    # checking if the user has pressed submit
+        new_contact = Contact(name=form.name.data, email=form.email.data, message=form.message.data) # create new object which has these fields and the data that was submitted
+        db.session.add(new_contact)                                                                  # temporarily writes to db
+        db.session.commit()                                                                          # commits write to db
+    return render_template("contact.html", title ="Contact Us", form=form)                           # send back an empty form
 
-@app.route('/todo', methods=["POST", "GET"])
-def view_todo():
-    all_todo = db.session.query(todo).all()
-    if request.method == "POST":
-        new_todo = todo(text=request.form['text'])
-        new_todo.done = False
-        db.session.add(new_todo)
+@app.route('/todo', methods=["POST", "GET"])                        # creates a new route, called to do and adds functionality of POST and GET methods
+def view_todo():                                                    # def for define followed by function name
+    all_todo = db.session.query(todo).all()                         # queries and retrieves the whole to do table, the results are stored into the all_todo variable.
+    if request.method == "POST":                                    # Checks to do form cellContent1 is attempting to submit data back to the server (POST).
+        new_todo = todo(text=request.form['text'])                  # Creates a new variable - new_todo - with all data submitted
+        new_todo.done = False                                       # Sets done field to False in table
+        db.session.add(new_todo)                                    # temporarily writes entry into database, then commits to database permanently
         db.session.commit()
         db.session.refresh(new_todo)
-        return redirect("/todo")
-    return render_template("todo.html", todos=all_todo)
+        return redirect("/todo")                                    # after previous lines success, this will refresh page
+    return render_template("todo.html", todos=all_todo)             # Sends Jinja template with data from to do table
 
-@app.route("/todoedit/<todo_id>", methods=["POST", "GET"])
-def edit_note(todo_id): # Creates the route and python function. This is different from other routes as it accepts a variable in the route.
-    if request.method == "POST":
-        db.session.query(todo).filter_by(id=todo_id).update({
-            "text": request.form['text'],
+@app.route("/todoedit/<todo_id>", methods=["POST", "GET"])          # Creates route, unique cos it accepts a variable in the route
+def edit_note(todo_id):                                             # function definition
+    if request.method == "POST":                                    # checks for a post
+        db.session.query(todo).filter_by(id=todo_id).update({       # queries to find same id
+            "text": request.form['text'],                           # if true, it updates text to whatever user wrote
             "done": True if request.form['done'] == "on" else False
         })
-        db.session.commit()
-    elif request.method == "GET":
-        db.session.query(todo).filter_by(id=todo_id).delete()
-        db.session.commit()
-    return redirect("/todo", code=302)
+        db.session.commit()                                         # commits changes to db
+    elif request.method == "GET":                                   # if user getting page
+        db.session.query(todo).filter_by(id=todo_id).delete()       # queries to find ids with to do and deletes
+        db.session.commit()                                         # commits changes to db
+    return redirect("/todo", code=302)                              # sends a error to the user that the url has been moved
