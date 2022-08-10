@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="ngunnawal.db" uuid="586fde08-f0f2-42a6-b691-9672ab7b5385">
+    <data-source source="LOCAL" name="identifier.sqlite" uuid="b9db4a94-0149-4bc8-bcb0-2bf0535423ad">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\RICT\Documents\GitHub\NgunnawalCountryFlask\ngunnwal.sqlite</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\RICT\Documents\GitHub\NgunnawalCountryFlask\ngunnawal.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
