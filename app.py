@@ -37,7 +37,7 @@ def view_todo():
     return render_template("todo.html", todos=all_todo)
 
 @app.route("/todoedit/<todo_id>", methods=["POST", "GET"])
-def edit_note(todo_id):
+def edit_note(todo_id): # Creates the route and python function. This is different from other routes as it accepts a variable in the route.
     if request.method == "POST":
         db.session.query(todo).filter_by(id=todo_id).update({
             "text": request.form['text'],
