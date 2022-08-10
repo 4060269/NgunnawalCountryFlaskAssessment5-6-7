@@ -1,0 +1,33 @@
+{% extends 'programmingTemplate.html' %}
+
+{# Place the content for the cellContent1 in this block #}
+{% block cellContent1 %}
+    <form method="POST" action="/todo">
+        <input type="text" name="text" placeholder="Add a new TODO item">
+        <button type="submit" value="update">Create new Todo Entry</button>
+    </form>
+{% endblock %}
+
+{# Place the content for the cellContent2 in this block #}
+{% block cellContent2 %}
+<h2>List</h2>
+{% for todo in todos %}
+    <p>
+    <form method="POST" action="/todoedit/{{ todo.id }}">
+        <input type="hidden" name="done" value="off">
+        <input type="checkbox" onclick="redirect('/todoedit/{{ todo.id }}')" data-target="/todoedit/{{ todo.id }}" name="done">
+
+        <input type="text" title="{{ todo.dateAdded }}" value="{{ todo.text }}" name="text" class="form-control">
+
+        <button type="submit" value="update">Update</button>
+    </form>
+<form method="GET" action="/todoedit/{{ todo.id }}">
+            <button type="submit" value="delete">Delete</button>
+        </form>
+{% endfor %}
+{% endblock %}
+
+{# Place the content for the cellContent3 in this block #}
+{% block cellContent3 %}
+    Footer
+{% endblock %}
