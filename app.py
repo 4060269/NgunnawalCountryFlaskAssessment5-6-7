@@ -22,6 +22,3 @@ def contact():
         db.session.add(new_contact)
         db.session.commit()
     return render_template("contact.html", title ="Contact Us", form=form)
-
-if __name__ == '__main__':
-    app.run()

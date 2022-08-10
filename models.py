@@ -8,8 +8,8 @@ class Contact(db.Model):
     message = db.Column(db.Text)
     dateSubmitted = db.Column(db.DateTime)
 
-def __init__(self, name, email, message):
-    self.name = name
-    self.email = email
-    self.message = message
-    self.dateSubmitted = datetime.today()
+    def __init__(self, name, email, message):
+        self.name = name
+        self.email = email
+        self.message = message
+        self.dateSubmitted = datetime.today()
