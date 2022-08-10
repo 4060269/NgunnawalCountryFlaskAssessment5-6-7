@@ -26,7 +26,7 @@ def contact():
 
 @app.route('/todo', methods=["POST", "GET"])                        # creates a new route, called to do and adds functionality of POST and GET methods
 def view_todo():                                                    # def for define followed by function name
-    all_todo = db.session.query(todo).all()                         # queries and retrieves the whole to do table, the results are stored into the all_todo variable.
+    all_todo = db.session.query(todo).all()                         # queries and retrieves the whole to do table, the results are stored into the all_todo variable
     if request.method == "POST":                                    # Checks to do form cellContent1 is attempting to submit data back to the server (POST).
         new_todo = todo(text=request.form['text'])                  # Creates a new variable - new_todo - with all data submitted
         new_todo.done = False                                       # Sets done field to False in table
