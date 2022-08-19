@@ -1,11 +1,36 @@
 @startuml NgunnawalWebsite
 left to right direction
 actor "Unregistered User" as unregistered
-actor Administrator as admin
 actor "Registered User" as registered
+actor "Demonstration User" as demo
+actor Administrator as admin
 
+' a package is a way to group all of the use cases
+' under the website name
 package NgunnawalWebsite {
-
-
+    usecase "User Registration" as UC1
+    usecase "User Login" as UC2
+    usecase "User Logout" as UC3
+    usecase "View Account Details" as UC4
+    usecase "Reset Password" as UC5
+    usecase "Access Gallery" as UC6
+    usecase "Upload Photos" as UC7
+    usecase "Download Photos" as UC8
+    usecase "Feedback Messages" as UC9
+    usecase "Error Messages" as UC10
+    usecase "Access Logs" as UC11
 }
+
+' this is directing actors to the use case with an arrow,
+' using the 'code' names of each elements
+unregistered --> UC1
+unregistered --> UC1
+unregistered --> UC1
+unregistered --> UC1
+unregistered --> UC1
+unregistered --> UC1
+unregistered --> UC1
+unregistered --> UC1
+unregistered --> UC1
+
 @enduml
