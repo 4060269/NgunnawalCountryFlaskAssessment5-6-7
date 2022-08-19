@@ -1,5 +1,8 @@
-@startuml NgunnawalWebsite
+@startuml
 left to right direction
+
+' creates a stick figure with a displayed title in
+' quotes and creates a 'code' name after the as
 actor "Unregistered User" as unregistered
 actor "Registered User" as registered
 actor "Demonstration User" as demo
@@ -24,13 +27,34 @@ package NgunnawalWebsite {
 ' this is directing actors to the use case with an arrow,
 ' using the 'code' names of each elements
 unregistered --> UC1
-unregistered --> UC1
-unregistered --> UC1
-unregistered --> UC1
-unregistered --> UC1
-unregistered --> UC1
-unregistered --> UC1
-unregistered --> UC1
-unregistered --> UC1
+unregistered --> UC2
+unregistered --> UC6
+unregistered --> UC9
+unregistered --> UC10
+
+registered --> UC2
+registered --> UC3
+registered --> UC4
+registered --> UC5
+registered --> UC6
+registered --> UC7
+registered --> UC8
+registered --> UC9
+registered --> UC10
+
+demo --> UC2
+demo --> UC3
+demo --> UC6
+
+admin --> UC2
+admin --> UC3
+admin --> UC5
+admin --> UC6
+admin --> UC7
+admin --> UC8
+admin --> UC9
+admin --> UC10
+admin --> UC11
+
 
 @enduml
