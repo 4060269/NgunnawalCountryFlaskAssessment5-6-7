@@ -1,0 +1,11 @@
+@startuml NgunnawalWebsite
+left to right direction
+actor "Unregistered User" as unregistered
+actor Administrator as admin
+actor "Registered User" as registered
+
+package NgunnawalWebsite {
+
+
+}
+@enduml
