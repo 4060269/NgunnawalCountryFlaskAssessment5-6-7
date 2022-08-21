@@ -3,13 +3,19 @@ from flask import Flask, render_template, request, redirect, url_for    # from p
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 
+
 app = Flask(__name__)
 app.config.from_object(Config)             # loads the configuration for the database
 db = SQLAlchemy(app)                       # creates the db object using the configuration
+login = LoginManager(app)
+login.login_view = 'login'
+
 
 from models import Contact
-from forms import ContactForm, RegistrationForm
+from forms import ContactForm, RegistrationForm, LoginForm
 from models import todo, User #insults
+from flask_login import current_user, login_user, LoginManager, logout_user, login_required
+
 
 @app.route('/')                                                                # when this url is accessed
 def aboutpage():                                                               # define function
@@ -59,3 +65,11 @@ def register():
         db.session.commit()
         return redirect(url_for("aboutpage"))
     return render_template("registration.html", title="User Registration", form=form)
+
+@app.route('/login', methods=['GET', 'POST'])
+    def login():
+        form = LoginForm
+        if form.validate_on_submit():
+            user = User.query.filter_by(email_address=form.email_address.data).first()
+            if user is none:
+                return redirect(url_for('login'))
