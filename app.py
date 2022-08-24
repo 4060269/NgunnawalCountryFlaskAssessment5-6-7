@@ -19,7 +19,7 @@ from flask_login import current_user, login_user, LoginManager, logout_user, log
 
 @app.route('/')                                                                # when this url is accessed
 def aboutpage():                                                               # define function
-    return render_template("index.html", title="Ngunnawal Country | About")    # send back much of index html and change the title via jinja
+    return render_template("index.html", title="Ngunnawal Country | About", user=current_user)    # send back much of index html and change the title via jinja
 
 @app.route("/contact.html", methods=["POST", "GET"])                                                 # user requests contact html, allows data back to the serve
 def contact():
@@ -28,7 +28,7 @@ def contact():
         new_contact = Contact(name=form.name.data, email=form.email.data, message=form.message.data) # create new object which has these fields and the data that was submitted
         db.session.add(new_contact)                                                                  # temporarily writes to db
         db.session.commit()                                                                          # commits write to db
-    return render_template("contact.html", title ="Contact Us", form=form)                           # send back an empty form
+    return render_template("contact.html", title ="Contact Us", form=form, user=current_user)                           # send back an empty form
 
 @app.route('/todo', methods=["POST", "GET"])                        # creates a new route, called to do and adds functionality of POST and GET methods
 def view_todo():                                                    # def for define followed by function name
@@ -40,7 +40,7 @@ def view_todo():                                                    # def for de
         db.session.commit()
         db.session.refresh(new_todo)
         return redirect("/todo")                                    # after previous lines success, this will refresh page
-    return render_template("todo.html", todos=all_todo)             # Sends Jinja template with data from to do table
+    return render_template("todo.html", todos=all_todo, user=current_user)             # Sends Jinja template with data from to do table
 
 @app.route("/todoedit/<todo_id>", methods=["POST", "GET"])          # Creates route, unique cos it accepts a variable in the route
 def edit_note(todo_id):                                             # function definition
@@ -64,15 +64,15 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for("aboutpage"))
-    return render_template("registration.html", title="User Registration", form=form)
+    return render_template("registration.html", title="User Registration", form=form, user=current_user)
 
 @app.route('/login', methods=['GET', 'POST'])
-    def login():
-        form = LoginForm
-        if form.validate_on_submit():
-            user = User.query.filter_by(email_address=form.email_address.data).first()
-            if user is none or not user.check_password(form.password.data):
-                return redirect(url_for('login'))
-            login_user(user)
-            return redirect(url_for("homepage"))
-        return render_template("login.html", title="Sign In", form=form)
+def login():
+    form = LoginForm
+    if form.validate_on_submit():
+        user = User.query.filter_by(email_address=form.email_address.data).first()
+        if user is none or not user.check_password(form.password.data):
+            return redirect(url_for('login'))
+        login_user(user)
+        return redirect(url_for("homepage"))
+        return render_template("login.html", title="Sign In", form=form, user=current_user)
