@@ -1,5 +1,5 @@
-from flask import Flask
-from flask import Flask, render_template, request, redirect, url_for    # from prototypes or framework, create an instance
+from flask import Flask, render_template, request, redirect, url_for
+from flask_login import current_user, login_user, LoginManager, logout_user, login_required # from prototypes or framework, create an instance
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 
@@ -14,7 +14,6 @@ login.login_view = 'login'
 from models import Contact
 from forms import ContactForm, RegistrationForm, LoginForm
 from models import todo, User #insults
-from flask_login import current_user, login_user, LoginManager, logout_user, login_required
 
 
 @app.route('/')                                                                # when this url is accessed
@@ -68,11 +67,11 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    form = LoginForm
+    form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email_address=form.email_address.data).first()
-        if user is none or not user.check_password(form.password.data):
+        if user is None or not user.check_password(form.password.data):
             return redirect(url_for('login'))
         login_user(user)
         return redirect(url_for("homepage"))
-        return render_template("login.html", title="Sign In", form=form, user=current_user)
+    return render_template("login.html", title="Sign In", form=form, user=current_user)

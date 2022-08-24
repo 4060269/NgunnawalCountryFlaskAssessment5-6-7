@@ -2,12 +2,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@600&display=swap');
 
-
-
 * {
     box sizing: border-box;
     font-family: 'Urbanist', sans-serif;
-    color: black;
+    color: white;
 }
 
 html,

@@ -1,4 +1,4 @@
-from app import db                 # get access to the db by creating instance
+from app import db, login              # get access to the db by creating instance
 from datetime import datetime      # create an instance of real-time
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
