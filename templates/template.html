@@ -92,9 +92,16 @@ s
           style="color: whitesmoke;"
           href="register">User Registration</a>
 
+          {% if user.is_anonymous %}
           <a class="nav-item nav-link"
           style="color: whitesmoke;"
           href="login">Login</a>
+
+          {% else %}
+          <a class="nav-item nav-link"
+          style="color: whitesmoke;"
+          href="logout">Log Out</a>
+          {% endif %}
 
             <div class="container-fluid">
               <form class="d-flex" role="search">
