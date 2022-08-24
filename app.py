@@ -71,5 +71,8 @@ def register():
         form = LoginForm
         if form.validate_on_submit():
             user = User.query.filter_by(email_address=form.email_address.data).first()
-            if user is none:
+            if user is none or not user.check_password(form.password.data):
                 return redirect(url_for('login'))
+            login_user(user)
+            return redirect(url_for("homepage"))
+        return render_template("login.html", title="Sign In", form=form)
