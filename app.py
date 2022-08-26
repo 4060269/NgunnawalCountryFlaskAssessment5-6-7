@@ -79,3 +79,6 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('homepage'))
+@app.route('/history.html', methods=['GET', 'POST'])
+def history():
+    return render_template("history.html")
