@@ -82,3 +82,7 @@ def logout():
 @app.route('/history.html', methods=['GET', 'POST'])
 def history():
     return render_template("history.html")
+
+@app.route('/gallery.html', methods=['GET, 'POST'])
+def gallery():
+    render_template("gallery.html")
