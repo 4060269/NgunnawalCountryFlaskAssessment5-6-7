@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_user, LoginManager, logout_user, login_required # from prototypes or framework, create an instance
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
@@ -62,6 +62,7 @@ def register():
         new_user.set_password(form.password.data)
         db.session.add(new_user)
         db.session.commit()
+        flask("Your have successfully registered your account")
         return redirect(url_for("aboutpage"))
     return render_template("registration.html", title="User Registration", form=form, user=current_user)
 
@@ -73,11 +74,13 @@ def login():
         if user is None or not user.check_password(form.password.data):
             return redirect(url_for('login'))
         login_user(user)
+        flask("Your have logged in")
         return redirect(url_for("homepage"))
     return render_template("login.html", title="Sign In", form=form, user=current_user)
 @app.route('/logout')
 def logout():
     logout_user()
+    flask("Your have logged out")
     return redirect(url_for('homepage'))
 @app.route('/history.html', methods=['GET', 'POST'])
 def history():
@@ -92,7 +95,8 @@ def reset_password():
     form = ResetPasswordForm()
     return render_template("passwordreset.html", title='Reset Password', form=form, user=current_user)
         if form.validate_on_submit():
-        user = User.query.filter_by(email_address=current_user.email_address).first()
-        user.set_password(form.new_password.data)
-        db.session.commit()
-        return redirect(url_for('homepage'))
+            user = User.query.filter_by(email_address=current_user.email_address).first()
+            user.set_password(form.new_password.data)
+            db.session.commit()
+            flask("Your Password has been reset")
+            return redirect(url_for('homepage'))

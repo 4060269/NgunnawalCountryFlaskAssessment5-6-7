@@ -96,13 +96,24 @@
           style="color: whitesmoke;"
           href="login">Login</a>
 
-
           <a class="nav-item nav-link"
           style="color: whitesmoke;"
           href="logout">Log Out</a>
 
+          <a class="nav-item nav-link"
+          style="color: whitesmoke;"
+          href="reset_password">Reset Password</a>
 
             <div class="container-fluid">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                     <ul class="flashes">
+                         {% for message in messages %}
+                <li><div class="focus">{{ message }}</div></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
               <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
