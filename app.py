@@ -90,3 +90,8 @@ def gallery():
 def reset_password():
     form = ResetPasswordForm()
     return render_template("passwordreset.html", title='Reset Password', form=form, user=current_user)
+        if form.validate_on_submit():
+        user = User.query.filter_by(email_address=current_user.email_address).first()
+        user.set_password(form.new_password.data)
+        db.session.commit()
+        return redirect(url_for('homepage'))
