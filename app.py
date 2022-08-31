@@ -87,6 +87,7 @@ def history():
 def gallery():
     render_template("gallery.html")
 @app.route('/reset_password', methods=['GET', 'POST'])
+@login_required
 def reset_password():
     form = ResetPasswordForm()
     return render_template("passwordreset.html", title='Reset Password', form=form, user=current_user)
