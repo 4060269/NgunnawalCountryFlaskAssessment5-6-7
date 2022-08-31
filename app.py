@@ -62,7 +62,7 @@ def register():
         new_user.set_password(form.password.data)
         db.session.add(new_user)
         db.session.commit()
-        flask("Your have successfully registered your account")
+        flash("Your have successfully registered your account")
         return redirect(url_for("aboutpage"))
     return render_template("registration.html", title="User Registration", form=form, user=current_user)
 
@@ -74,14 +74,14 @@ def login():
         if user is None or not user.check_password(form.password.data):
             return redirect(url_for('login'))
         login_user(user)
-        flask("Your have logged in")
-        return redirect(url_for("homepage"))
+        flash("Your have logged in")
+        return redirect(url_for("aboutpage"))
     return render_template("login.html", title="Sign In", form=form, user=current_user)
 @app.route('/logout')
 def logout():
     logout_user()
-    flask("Your have logged out")
-    return redirect(url_for('homepage'))
+    flash("Your have logged out")
+    return redirect(url_for('aboutpage'))
 @app.route('/history.html', methods=['GET', 'POST'])
 def history():
     return render_template("history.html")
@@ -93,10 +93,10 @@ def gallery():
 @login_required
 def reset_password():
     form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email_address=current_user.email_address).first()
+        user.set_password(form.new_password.data)
+        db.session.commit()
+        flash("Your Password has been reset")
+        return redirect(url_for('aboutpage'))
     return render_template("passwordreset.html", title='Reset Password', form=form, user=current_user)
-        if form.validate_on_submit():
-            user = User.query.filter_by(email_address=current_user.email_address).first()
-            user.set_password(form.new_password.data)
-            db.session.commit()
-            flask("Your Password has been reset")
-            return redirect(url_for('homepage'))
