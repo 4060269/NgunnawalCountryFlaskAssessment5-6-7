@@ -12,7 +12,7 @@ login.login_view = 'login'
 
 
 from models import Contact
-from forms import ContactForm, RegistrationForm, LoginForm
+from forms import ContactForm, RegistrationForm, LoginForm, ResetPasswordForm
 from models import todo, User #insults
 
 
@@ -86,3 +86,7 @@ def history():
 @app.route('/gallery.html', methods=['GET', 'POST'])
 def gallery():
     render_template("gallery.html")
+@app.route('/reset_password', methods=['GET', 'POST'])
+def reset_password():
+    form = ResetPasswordForm()
+    return render_template("passwordreset.html", title='Reset Password', form=form, user=current_user)
