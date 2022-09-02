@@ -28,8 +28,6 @@
   <link rel="stylesheet" href="/static/css/bootstrap.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
   <script src="/static/js/bootstrap.js"></script>
   <link rel="stylesheet" href="/static/styles.css"/>
-    {% block pageStyle %}
-    {% endblock %}
 
   <title>{{ title }}</title>
 </head>
@@ -41,7 +39,7 @@
     style="background-image: url(/static/Images/Requisites/Ngunnawal-country-banner.png);
     background-size: 1000px 150px;
     background-position: right;
-    background-repeat: repeat-x;"
+    background-repeat: repeat;"
     role="navigation">
 
 
@@ -67,8 +65,8 @@
         <div class="navbar-nav">
 
           <a class="nav-item"
-          style="color: whitesmoke;"
-          NOT WORKING USER NAME DISPLAY </a>
+          style="color: whitesmoke;">
+             {{ user.name }}</a>
 
           <a class="nav-item nav-link active"
           style="color: whitesmoke;"
@@ -103,7 +101,7 @@
           style="color: whitesmoke;"
           href="reset_password">Reset Password</a>
 
-            <div class="container-fluid">
+            <div class="container-fluid" style="justify-items: right">
               <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
@@ -121,22 +119,13 @@
   <section class="content-section container">
     <h2 class="section-header"></h2>
 
+
     <p>
         {% block cellContent1 %} {% endblock %}
     </p>
 
     <p>
-        {% block cellContent2 %}
-            {% with messages = get_flashed_messages() %}
-              {% if messages %}
-                <ul class=flashes>
-                {% for message in messages %}
-                  <li>{{ message }}</li>
-                {% endfor %}
-                </ul>
-              {% endif %}
-            {% endwith %}
-        {% endblock %}
+        {% block cellContent2 %} {% endblock %}
     </p>
 
     <hr />
