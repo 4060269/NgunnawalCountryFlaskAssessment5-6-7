@@ -100,4 +100,4 @@ def reset_password():
         db.session.commit()
         flash("Your Password has been reset")
         return redirect(url_for('aboutpage'))
-    return render_template("passwordreset.html", title='Reset Password', form=form, user=current_user)
+    return render_template('passwordreset.html', title='Reset Password', form=form, user=current_user)
