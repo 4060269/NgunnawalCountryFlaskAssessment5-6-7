@@ -72,6 +72,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email_address=form.email_address.data).first()
         if user is None or not user.check_password(form.password.data):
+            flash("Invalid credentials")
             return redirect(url_for('login'))
         login_user(user)
         flash("Your have logged in")
