@@ -101,3 +101,9 @@ def reset_password():
         flash("Your Password has been reset")
         return redirect(url_for('aboutpage'))
     return render_template('passwordreset.html', title='Reset Password', form=form, user=current_user)
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html', user=current_user), 404
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template('500.html', user=current_user), 500
