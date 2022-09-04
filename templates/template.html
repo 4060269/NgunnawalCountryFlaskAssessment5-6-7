@@ -66,10 +66,6 @@
 
           <a class="nav-item"
           style="color: whitesmoke;">
-             {{ user.name }}</a>
-
-          <a class="nav-item"
-          style="color: whitesmoke;">
              {% with messages = get_flashed_messages() %}
                 {% if messages %}
                 <ul class=flashes>
@@ -109,11 +105,15 @@
           style="color: whitesmoke;"
           href="logout">Log Out</a>
 
+          <a class="nav-item"
+          style="color: whitesmoke;">
+          Profile for {{ user.name }}</a>
+
           <a class="nav-item nav-link"
           style="color: whitesmoke;"
           href="reset_password">Reset Password</a>
 
-            <div class="container-fluid" style="justify-items: right">
+            <div class="container-fluid" style="justify-items: right;">
               <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
