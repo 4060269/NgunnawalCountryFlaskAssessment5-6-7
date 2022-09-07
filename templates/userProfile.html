@@ -28,12 +28,16 @@
                 Password Hash
             </div>
             <div class="col-md-6">
-                {{ user.password_hash }}
+                <a href="/reset_password">Reset Password</a>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                User Level
+                {% if user.user_level==1 %}
+                    Administrator
+                {% else %}
+                    User
+                {% endif %}
             </div>
             <div class="col-md-6">
                 {{ user.user_level }}
