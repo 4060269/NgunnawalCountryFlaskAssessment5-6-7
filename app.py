@@ -110,4 +110,14 @@ def internal_server_error(e):
 @app.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
-	return render_template("userProfile.html", title="User Profile", user=current_user)
+    form = UserProfileForm()
+    user = User.query.filter_by(email_address=current_user.email_address).first()
+    if request.method == 'GET':
+        form.name.data = user.name
+        form.email_address.data = user.email_address
+    if form.validate_on_submit():
+        user.update_details(email_address=form.email_address.data, name=form.name.data)
+        db.session.commit()
+        flash("Your details have been changed")
+        return redirect(url_for("homepage"))
+    return render_template("userProfile.html", title="User Profile", user=current_user, form=form)
