@@ -107,3 +107,7 @@ def page_not_found(e):
 @app.errorhandler(500)
 def internal_server_error(e):
     return render_template('500.html', user=current_user), 500
+@app.route('/profile', methods=['GET', 'POST'])
+@login_required
+def profile():
+	return render_template("userProfile.html", title="User Profile", user=current_user)

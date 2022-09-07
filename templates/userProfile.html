@@ -1,0 +1,43 @@
+{% extends 'template.html' %}
+
+{# Place the content for the cellContent1 in this block #}
+{% block cellContent1 %}
+    <h2 class="section-header">User Profile</h2>
+{% endblock %}
+
+{% block cellContent2 %}
+    <div class="container text-left">
+        <div class="row">
+            <div class="col-md-6">
+                User Name
+            </div>
+            <div class="col-md-6">
+                {{ user.name }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                Email Address
+            </div>
+            <div class="col-md-6">
+                {{ user.email_address }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                Password Hash
+            </div>
+            <div class="col-md-6">
+                {{ user.password_hash }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                User Level
+            </div>
+            <div class="col-md-6">
+                {{ user.user_level }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
