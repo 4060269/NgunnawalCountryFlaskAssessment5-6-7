@@ -12,7 +12,7 @@ login.login_view = 'login'
 
 
 from models import Contact
-from forms import ContactForm, RegistrationForm, LoginForm, ResetPasswordForm
+from forms import ContactForm, RegistrationForm, LoginForm, ResetPasswordForm, UserProfileForm
 from models import todo, User #insults
 
 
@@ -20,7 +20,7 @@ from models import todo, User #insults
 def aboutpage():                                                               # define function
     return render_template("index.html", title="Ngunnawal Country | About", user=current_user)    # send back much of index html and change the title via jinja
 
-@app.route("/contact.html", methods=["POST", "GET"])                                                 # user requests contact html, allows data back to the serve
+@app.route("/contact", methods=["POST", "GET"])                                                 # user requests contact html, allows data back to the serve
 def contact():
     form = ContactForm()                                                                             # load contact from models and store it locally
     if form.validate_on_submit():                                                                    # checking if the user has pressed submit
@@ -83,14 +83,13 @@ def logout():
     logout_user()
     flash("Your have logged out")
     return redirect(url_for('aboutpage'))
-@app.route('/history.html', methods=['GET', 'POST'])
+@app.route('/history', methods=['GET', 'POST'])
 def history():
-    return render_template("history.html")
-
-@app.route('/gallery.html', methods=['GET', 'POST'])
+    return render_template("history.html", user=current_user)
+@app.route('/gallery', methods=['GET', 'POST'])
 def gallery():
-    return render_template("gallery.html")
-@app.route('/reset_password', methods=['GET', 'POST'])
+    return render_template("gallery.html", user=current_user)
+@app.route('/passwordreset', methods=['GET', 'POST'])
 @login_required
 def reset_password():
     form = ResetPasswordForm()

@@ -26,7 +26,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
 class ResetPasswordForm(FlaskForm):
     new_password = StringField("New Password", validators=[DataRequired()])
-    new_password_confirm = PasswordField("Confirm Password", validat=[DataRequired(), EqualTo("new_password")])
+    new_password_confirm = PasswordField("Confirm Password", validators=[DataRequired(), EqualTo("new_password")])
     submit = SubmitField('Submit')
 class UserProfileForm(FlaskForm):
     email_address = StringField("Email Address (Username)", validators=[DataRequired(), Email()])
