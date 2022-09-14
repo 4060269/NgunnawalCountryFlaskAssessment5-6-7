@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+ <!-- finish changing band to header -->
 <head>
   <meta charset="UTF-8"/>
 
@@ -104,10 +104,10 @@
           style="color: whitesmoke;"
           href="/passwordreset">Reset Password</a>
 
-            <div class="container-fluid" style="justify-items: right;">
+            <div class="search-box container-fluid">
               <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <input class="search-box-text form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn" type="submit">Search</button>
               </form>
             </div>
         </div>
@@ -133,7 +133,7 @@
         {% endwith %}
 
     <h1
-      class="band-name band-name-large"
+      class="header-name header-name-large"
       style="padding-top: 20px; padding-bottom: 20px;">Ngunnawal Country</h1>
   </header>
 
@@ -156,6 +156,7 @@
     <div class="container main-footer-container">
 
       <h3 style="font-size: 1.5em;" class="band-name">Ngunnawal Country</h3>
+
       <ul class="nav footer-nav">
 
         <li>
@@ -166,10 +167,9 @@
           </a>
         </li>
 
-        <li style="width: 100%;">
+        <li style="width: 100%;" class="hover">
           <a href="https://www.act.gov.au/ngunnawal-country"
           style="background-size:contain">
-
             <img src="/static/Images/Footer/government-icon.png"/>
           </a>
         </li>
@@ -179,8 +179,10 @@
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 

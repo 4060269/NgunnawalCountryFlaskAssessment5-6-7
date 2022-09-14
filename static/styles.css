@@ -40,10 +40,6 @@ body {
     padding: 0 5%;
 }
 
-.nav a:hover {
-    background-color: whitesmoke;
-}
-
 .main-header {
     background-image: url(https://rawcdn.githack.com/4060269/NgunnawalCountryWebDev/acd81713929e874598bffc8d20f2ed3be696c257/Images/Ngunnawal-country-banner.png);
     background-position: 100% 100%;
@@ -82,7 +78,7 @@ body {
     font-size: 2.5em;
 }
 
-.about-logic-image {
+.about-image {
     float: left;
     width: 20%;
     height: 100%;
@@ -111,13 +107,14 @@ body {
 }
 
 .footer-nav img {
-    width: 30px;
-    height: 30px;
+    width: 60px;
+    height: 38px;
 }
 
 .btn {
+    color: whitesmoke;
+    background-color: black;
     text-align: center;
-    background-color: lightseagreen;
     vertical-align: middle;
     padding: .67em;
     cursor: pointer;
@@ -129,76 +126,10 @@ body {
 
 }
 
-.btn-header {
-    display: block;
-    margin: 0 auto;
-    background-color: #ac5c34;
-    color: white;
-    border: 2px solid #333;
-    border-radius: 1;
-    font-size: 1em;
-    font-weight: lighter;
-    padding-left: 2em;
-    padding-right: 2em;
+.search-box-text {
+    color: whitesmoke;
 }
 
-.btn-header:hover {
-    background-color: rgba(255, 255, 255, .3);
-}
-
-.btn-play {
-    display: block;
-    margin: 0 auto;
-    color: aliceblue;
-}
-
-.album-row {
-    border-bottom: 1px solid whitesmoke;
-    padding-bottom: 1em;
-    margin-bottom: 1em;
-}
-
-.album-row:last-child {
-    border-bottom: none;
-}
-
-.album-item {
-    display: inline-block;
-    padding-right: .5em;
-}
-
-.album-name {
-    font-weight: bolder;
-    width: 24%;
-}
-
-.album-date {
-    width: 11%;
-}
-
-.album-quote {
-    width: 42%;
-}
-
-.album-button {
-    position: relative;
-    top: -20px;
-    max-width: 19%;
-}
-
-.button-primary {
-    border: none;
-    border-radius: .3em;
-    font-weight: bold;
-}
-
-.button-primary:hover {
-}
-
-.btn-danger {
-    border: none;
-    border-radius: .3em;
-}
-
-.btn-danger:hover {
+.btn:hover {
+    background-color: blue;
 }
