@@ -184,28 +184,21 @@ body {
     position: relative;
     top: -20px;
     max-width: 19%;
-
 }
 
 .button-primary {
-    color: whitesmoke;
-    background-color: #2cb8b9;
     border: none;
     border-radius: .3em;
     font-weight: bold;
 }
 
 .button-primary:hover {
-    background-color: #777;
 }
 
 .btn-danger {
-    color: white;
-    background-color: red;
     border: none;
     border-radius: .3em;
 }
 
 .btn-danger:hover {
-    background-color: darkred;
 }

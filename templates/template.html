@@ -64,18 +64,6 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
 
-          <a class="nav-item"
-          style="color: whitesmoke;">
-             {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                <ul class=flashes>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
-            {% endwith %}</a>
-
           <a class="nav-item nav-link active"
           style="color: whitesmoke;"
           href="/">Home
@@ -125,6 +113,25 @@
         </div>
       </div>
     </nav>
+      <a class="nav-item"
+          style="color: whitesmoke;">
+
+      </a>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Holy guacamole!</strong>
+        {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class=flashes>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
 
     <h1
       class="band-name band-name-large"
