@@ -78,17 +78,21 @@ def login():
         flash("Your have logged in")
         return redirect(url_for("aboutpage"))
     return render_template("login.html", title="Sign In", form=form, user=current_user)
+
 @app.route('/logout')
 def logout():
     logout_user()
     flash("Your have logged out")
     return redirect(url_for('aboutpage'))
+
 @app.route('/history', methods=['GET', 'POST'])
 def history():
     return render_template("history.html", user=current_user)
+
 @app.route('/gallery', methods=['GET', 'POST'])
 def gallery():
     return render_template("gallery.html", user=current_user)
+
 @app.route('/passwordreset', methods=['GET', 'POST'])
 @login_required
 def reset_password():
@@ -100,12 +104,15 @@ def reset_password():
         flash("Your Password has been reset")
         return redirect(url_for('aboutpage'))
     return render_template('passwordreset.html', title='Reset Password', form=form, user=current_user)
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html', user=current_user), 404
+
 @app.errorhandler(500)
 def internal_server_error(e):
     return render_template('500.html', user=current_user), 500
+
 @app.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
@@ -120,3 +127,10 @@ def profile():
         flash("Your details have been changed")
         return redirect(url_for("homepage"))
     return render_template("userProfile.html", title="User Profile", user=current_user, form=form)
+
+@app.route('/contact_messages')
+@login_required
+def view_contact_messages():
+    contact_messages = Contact.query.all()
+    return render_template("contactMessages.html", title="Contact Messages", user=current_user, messages=contact_messages)
+
