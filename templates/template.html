@@ -117,21 +117,20 @@
           style="color: whitesmoke;">
 
       </a>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong>Holy guacamole!</strong>
+
         {% with messages = get_flashed_messages() %}
                 {% if messages %}
-                <ul class=flashes>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-                </ul>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                         </button>
+                        {% for message in messages %}
+                        {{ message }}
+                        {% endfor %}
+                        </ul>
+                    </div>
             {% endif %}
         {% endwith %}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-    </button>
-    </div>
 
     <h1
       class="band-name band-name-large"
