@@ -47,7 +47,7 @@ body {
     padding-bottom: 30px;
 }
 
-.band-name {
+.company-name {
     text-align: center;
     color: whitesmoke;
     font-family: 'Azeret Mono', monospace;
@@ -55,7 +55,7 @@ body {
     font-size: 3em;
 }
 
-.band-name-large {
+.company-name-large {
     font-size: 4em;
 }
 
@@ -78,7 +78,7 @@ body {
     font-size: 2.5em;
 }
 
-.about-image {
+.about-img {
     float: left;
     width: 20%;
     height: 100%;

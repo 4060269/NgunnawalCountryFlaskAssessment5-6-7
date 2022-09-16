@@ -1,6 +1,5 @@
 {% extends 'template.html' %}
 
-{# Place the content for the cellContent1 in this block #}
 {% block cellContent1 %}
     <h2 class="section-header">To Do List</h2>
     <form method="POST" action="/todo">
@@ -9,7 +8,6 @@
     </form>
 {% endblock %}
 
-{# Place the content for the cellContent2 in this block #}
 {% block cellContent2 %}
 <h2>List</h2>
 {% for todo in todos %}
@@ -26,9 +24,4 @@
             <button type="submit" value="delete">Delete</button>
         </form>
 {% endfor %}
-{% endblock %}
-
-{# Place the content for the cellContent3 in this block #}
-{% block cellContent3 %}
-    Footer
 {% endblock %}

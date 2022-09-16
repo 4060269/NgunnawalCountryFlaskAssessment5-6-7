@@ -1,11 +1,9 @@
 {% extends 'template.html' %}
 
-{# Place the content for the cellContent1 in this block #}
 {% block cellContent1 %}
     <h2 class="section-header">Login</h2>
 {% endblock %}
 
-{# Place the content for the cellContent2 in this block #}
 {% block cellContent2 %}
     <form action="" method="post">
         {{ form.hidden_tag() }}
@@ -27,8 +25,4 @@
         </p>
         <p> {{ form.submit(class='.btn-color') }} </p>
     </form>
-{% endblock %}
-
-{# Place the content for the cellContent3 in this block #}
-{% block cellContent3 %}
 {% endblock %}
