@@ -125,7 +125,7 @@ def profile():
         user.update_details(email_address=form.email_address.data, name=form.name.data)
         db.session.commit()
         flash("Your details have been changed")
-        return redirect(url_for("homepage"))
+        return redirect(url_for("aboutpage"))
     return render_template("userprofile.html", title="User Profile", user=current_user, form=form)
 
 @app.route('/contactmessages', methods=['GET'])
@@ -135,5 +135,5 @@ def view_contact_messages():
         contact_messages = Contact.query.all()
         return render_template("contactmessages.html", title="Contact Messages", user=current_user, messages=contact_messages)
     else:
-        return redirect(url_for("homepage"))
+        return redirect(url_for("aboutpage"))
 
