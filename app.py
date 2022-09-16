@@ -5,8 +5,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
-app.config.from_object(Config)             # loads the configuration for the database
-db = SQLAlchemy(app)                       # creates the db object using the configuration
+app.config.from_object(Config) # loads the configuration for the database
+db = SQLAlchemy(app)           # creates the db object using the configuration
 login = LoginManager(app)
 login.login_view = 'login'
 
@@ -18,9 +18,9 @@ from models import todo, User #insults
 
 @app.route('/')                                                                # when this url is accessed
 def homepage():                                                               # define function
-    return render_template("index.html", title="Ngunnawal Country | Home", user=current_user)    # send back much of index html and change the title via jinja
+    return render_template("index.html", title="Ngunnawal Country | Home", user=current_user) # send back much of index html and change the title via jinja
 
-@app.route("/contact", methods=["POST", "GET"])                                                 # user requests contact html, allows data back to the serve
+@app.route("/contact", methods=["POST", "GET"])                                                      # user requests contact html, allows data back to the serve
 def contact():
     form = ContactForm()                                                                             # load contact from models and store it locally
     if form.validate_on_submit():                                                                    # checking if the user has pressed submit
@@ -28,7 +28,7 @@ def contact():
         db.session.add(new_contact)                                                                  # temporarily writes to db
         db.session.commit()                                                                          # commits write to db
         flash("Your have successfully sent a message to us!")
-    return render_template("contact.html", title="Ngunnawal Country | Contact Us!", form=form, user=current_user)       # send back an empty form
+    return render_template("contact.html", title="Ngunnawal Country | Contact Us!", form=form, user=current_user) # send back an empty form
 
 @app.route('/todo', methods=["POST", "GET"])                        # creates a new route, called to do and adds functionality of POST and GET methods
 def view_todo():                                                    # def for define followed by function name
@@ -39,6 +39,7 @@ def view_todo():                                                    # def for de
         db.session.add(new_todo)                                    # temporarily writes entry into database, then commits to database permanently
         db.session.commit()
         db.session.refresh(new_todo)
+        flash("Your have successfully created a new task!")
         return redirect("/todo")                                    # after previous lines success, this will refresh page
     return render_template("todo.html", title="Ngunnawal Country | To Do List", todos=all_todo, user=current_user)             # Sends Jinja template with data from to do table
 
@@ -49,10 +50,12 @@ def edit_note(todo_id):                                             # function d
             "text": request.form['text'],                           # if true, it updates text to whatever user wrote
             "done": True if request.form['done'] == "on" else False
         })
-        db.session.commit()                                         # commits changes to db
+        db.session.commit()
+        flash("Your have successfully updated a task!")             # commits changes to db
     elif request.method == "GET":                                   # if user getting page
         db.session.query(todo).filter_by(id=todo_id).delete()       # queries to find ids with to do and deletes
-        db.session.commit()                                         # commits changes to db
+        db.session.commit()
+        flash("Your have successfully deleted a task!")             # commits changes to db
     return redirect("/todo", code=302)                              # sends a error to the user that the url has been moved
 
 @app.route("/register", methods=["GET", "POST"])

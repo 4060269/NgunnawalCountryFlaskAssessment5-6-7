@@ -4,31 +4,30 @@ from wtforms import StringField, SubmitField, IntegerField, PasswordField
 from models import User
 
 class ContactForm (FlaskForm):                                          # create a py class, it will be used as flask form
-    name = StringField("Name", validators=[DataRequired()])             # defined as stringfield, to indicate string data
-    email = StringField("Email", validators=[DataRequired(), Email()])  # text in double quotes are displayed on form by using jinja block
-    message = StringField("Message", validators=[DataRequired()])       # validators make it a requirement to put infomation in all boxes, email() makes it to be a vaild one
-    submit = SubmitField('Submit', render_kw={"class": "btn btn-primary btn-block"}) # Submit text would be inside button
-                                    #this does not work yet
+    name = StringField("Name", validators=[DataRequired()], render_kw={"class": "text-box"})             # defined as stringfield, to indicate string data
+    email = StringField("Email", validators=[DataRequired(), Email()], render_kw={"class": "text-box"})  # text in double quotes are displayed on form by using jinja block
+    message = StringField("Message", validators=[DataRequired()], render_kw={"class": "text-box"})       # validators make it a requirement to put infomation in all boxes, email() makes it to be a vaild one
+    submit = SubmitField('Submit', render_kw={"class": "btn"})
 class RegistrationForm(FlaskForm):
-    email_address = StringField("Email Address (Username)", validators=[DataRequired(), Email()])
-    name = StringField("Full Name", validators=[DataRequired()])
-    password = PasswordField("Password", validators=[DataRequired()])
-    password_confirm = PasswordField("Confirm Password", validators=[DataRequired(), EqualTo("password")])
-    submit = SubmitField("Register")
+    email_address = StringField("Email Address (Username)", validators=[DataRequired(), Email()], render_kw={"class": "text-box"})
+    name = StringField("Full Name", validators=[DataRequired()], render_kw={"class": "text-box"})
+    password = PasswordField("Password", validators=[DataRequired()], render_kw={"class": "text-box"})
+    password_confirm = PasswordField("Confirm Password", validators=[DataRequired(), EqualTo("password")], render_kw={"class": "text-box"})
+    submit = SubmitField('Register', render_kw={"class": "btn"})
 def validate_email_address(self, email_address_to_register):
   user = User.query.filter_by(email_address=email_address_to_register.data).first()
   if user is not None:
-      raise ValidationError("Please Use a Different Email Address)")
+      raise ValidationError("Please Use a Different Email Address")
 
 class LoginForm(FlaskForm):
-    email_address = StringField('Email Address', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    submit = SubmitField('Sign In')
+    email_address = StringField('Email Address', validators=[DataRequired()], render_kw={"class": "text-box"})
+    password = PasswordField('Password', validators=[DataRequired()], render_kw={"class": "text-box"})
+    submit = SubmitField('Sign In', render_kw={"class": "btn"})
 class ResetPasswordForm(FlaskForm):
-    new_password = StringField("New Password", validators=[DataRequired()])
-    new_password_confirm = PasswordField("Confirm Password", validators=[DataRequired(), EqualTo("new_password")])
-    submit = SubmitField('Submit')
+    new_password = StringField("New Password", validators=[DataRequired()], render_kw={"class": "text-box"})
+    new_password_confirm = PasswordField("Confirm Password", validators=[DataRequired(), EqualTo("new_password")], render_kw={"class": "text-box"})
+    submit = SubmitField('Submit', render_kw={"class": "btn"})
 class UserProfileForm(FlaskForm):
-    email_address = StringField("Email Address (Username)", validators=[DataRequired(), Email()])
-    name = StringField("Full Name", validators=[DataRequired()])
-    submit = SubmitField("Update Profile")
+    email_address = StringField("Email Address (Username)", validators=[DataRequired(), Email()], render_kw={"class": "text-box"})
+    name = StringField("Full Name", validators=[DataRequired()], render_kw={"class": "text-box"})
+    submit = SubmitField("Update Profile", render_kw={"class": "btn"})
