@@ -17,8 +17,8 @@ from models import todo, User #insults
 
 
 @app.route('/')                                                                # when this url is accessed
-def aboutpage():                                                               # define function
-    return render_template("index.html", title="Ngunnawal Country | About", user=current_user)    # send back much of index html and change the title via jinja
+def homepage():                                                               # define function
+    return render_template("index.html", title="Ngunnawal Country | Home", user=current_user)    # send back much of index html and change the title via jinja
 
 @app.route("/contact", methods=["POST", "GET"])                                                 # user requests contact html, allows data back to the serve
 def contact():
@@ -27,7 +27,8 @@ def contact():
         new_contact = Contact(name=form.name.data, email=form.email.data, message=form.message.data) # create new object which has these fields and the data that was submitted
         db.session.add(new_contact)                                                                  # temporarily writes to db
         db.session.commit()                                                                          # commits write to db
-    return render_template("contact.html", title ="Contact Us", form=form, user=current_user)                           # send back an empty form
+        flash("Your have successfully sent a message to us!")
+    return render_template("contact.html", title="Ngunnawal Country | Contact Us!", form=form, user=current_user)       # send back an empty form
 
 @app.route('/todo', methods=["POST", "GET"])                        # creates a new route, called to do and adds functionality of POST and GET methods
 def view_todo():                                                    # def for define followed by function name
@@ -39,7 +40,7 @@ def view_todo():                                                    # def for de
         db.session.commit()
         db.session.refresh(new_todo)
         return redirect("/todo")                                    # after previous lines success, this will refresh page
-    return render_template("todo.html", todos=all_todo, user=current_user)             # Sends Jinja template with data from to do table
+    return render_template("todo.html", title="Ngunnawal Country | To Do List", todos=all_todo, user=current_user)             # Sends Jinja template with data from to do table
 
 @app.route("/todoedit/<todo_id>", methods=["POST", "GET"])          # Creates route, unique cos it accepts a variable in the route
 def edit_note(todo_id):                                             # function definition
@@ -63,8 +64,8 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         flash("Your have successfully registered your account")
-        return redirect(url_for("aboutpage"))
-    return render_template("registration.html", title="User Registration", form=form, user=current_user)
+        return redirect(url_for("homepage"))
+    return render_template("registration.html", title="Ngunnawal Country | User Registration", form=form, user=current_user)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -76,22 +77,22 @@ def login():
             return redirect(url_for('login'))
         login_user(user)
         flash("Your have logged in")
-        return redirect(url_for("aboutpage"))
-    return render_template("login.html", title="Sign In", form=form, user=current_user)
+        return redirect(url_for("homepage"))
+    return render_template("login.html", title="Ngunnawal Country | Login", form=form, user=current_user)
 
 @app.route('/logout')
 def logout():
     logout_user()
     flash("Your have logged out")
-    return redirect(url_for('aboutpage'))
+    return redirect(url_for('homepage'))
 
 @app.route('/history', methods=['GET', 'POST'])
 def history():
-    return render_template("history.html", user=current_user)
+    return render_template("history.html", title="Ngunnawal Country | History", user=current_user)
 
 @app.route('/gallery', methods=['GET', 'POST'])
 def gallery():
-    return render_template("gallery.html", user=current_user)
+    return render_template("gallery.html", title="Ngunnawal Country | Gallery", user=current_user)
 
 @app.route('/passwordreset', methods=['GET', 'POST'])
 @login_required
@@ -102,16 +103,16 @@ def reset_password():
         user.set_password(form.new_password.data)
         db.session.commit()
         flash("Your Password has been reset")
-        return redirect(url_for('aboutpage'))
-    return render_template('passwordreset.html', title='Reset Password', form=form, user=current_user)
+        return redirect(url_for('homepage'))
+    return render_template('passwordreset.html', title="Ngunnawal Country | Password Reset", form=form, user=current_user)
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html', user=current_user), 404
+    return render_template('404.html', title="Ngunnawal Country | 404 Error", user=current_user), 404
 
 @app.errorhandler(500)
 def internal_server_error(e):
-    return render_template('500.html', user=current_user), 500
+    return render_template('500.html', title="Ngunnawal Country | 500 Error", user=current_user), 500
 
 @app.route('/profile', methods=['GET', 'POST'])
 @login_required
@@ -125,15 +126,15 @@ def profile():
         user.update_details(email_address=form.email_address.data, name=form.name.data)
         db.session.commit()
         flash("Your details have been changed")
-        return redirect(url_for("aboutpage"))
-    return render_template("userprofile.html", title="User Profile", user=current_user, form=form)
+        return redirect(url_for("homepage"))
+    return render_template("userprofile.html", title="Ngunnawal Country | Profile", user=current_user, form=form)
 
 @app.route('/contactmessages', methods=['GET'])
 @login_required
 def view_contact_messages():
     if current_user.is_admin():
         contact_messages = Contact.query.all()
-        return render_template("contactmessages.html", title="Contact Messages", user=current_user, messages=contact_messages)
+        return render_template("contactmessages.html", title="Ngunnawal Country | Contact Messages", user=current_user, messages=contact_messages)
     else:
-        return redirect(url_for("aboutpage"))
+        return redirect(url_for("homepage"))
 
