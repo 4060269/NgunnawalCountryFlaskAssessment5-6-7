@@ -126,14 +126,14 @@ def profile():
         db.session.commit()
         flash("Your details have been changed")
         return redirect(url_for("homepage"))
-    return render_template("userProfile.html", title="User Profile", user=current_user, form=form)
+    return render_template("userprofile.html", title="User Profile", user=current_user, form=form)
 
-@app.route('/contact_messages')
+@app.route('/contactmessages', methods=['GET'])
 @login_required
 def view_contact_messages():
     if current_user.is_admin():
         contact_messages = Contact.query.all()
-        return render_template("contactMessages.html", title="Contact Messages", user=current_user, messages=contact_messages)
+        return render_template("contactmessages.html", title="Contact Messages", user=current_user, messages=contact_messages)
     else:
         return redirect(url_for("homepage"))
 
