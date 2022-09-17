@@ -13,7 +13,7 @@ login.login_view = 'login'
 
 from models import Contact
 from forms import ContactForm, RegistrationForm, LoginForm, ResetPasswordForm, UserProfileForm
-from models import todo, User #insults
+from models import todo, User
 
 
 @app.route('/')                                                                # when this url is accessed
