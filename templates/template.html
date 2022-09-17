@@ -34,7 +34,7 @@
 <body>
   <header>
     <nav
-    class="navbar navbar-expand-lg"
+    class="navbar navbar-dark bg-dark navbar-expand-lg"
     style="background-image: url(/static/Images/Requisites/Ngunnawal-country-banner.png);
     background-size: 1000px 150px;
     background-position: right;
@@ -83,7 +83,7 @@
           <a class="nav-item nav-link"
           style="color: whitesmoke;"
           href="/register">User Registration</a>
-
+<!-- if the user is logged in, don't show this link -->
           <a class="nav-item nav-link"
           style="color: whitesmoke;"
           href="/login">Login</a>
@@ -91,13 +91,9 @@
           <a class="nav-item nav-link"
           style="color: whitesmoke;"
           href="/logout">Log Out</a>
-
-          <a class="nav-item"
-          style="color: whitesmoke;">
-          Profile for {{ user.name }}</a>
-
+<!-- if the user is logged in, show this link -->
           <a class="nav-item" style="color: whitesmoke;"
-          href="/profile">Profile</a>
+          href="/profile">Profile for {{ user.name }}</a>
 
           <a class="nav-item nav-link"
           style="color: whitesmoke;"
@@ -165,7 +161,7 @@
           </a>
         </li>
 
-        <li style="width: 100%;" class="hover">
+        <li style="width: 100%;">
           <a href="https://www.act.gov.au/ngunnawal-country"
           style="background-size:contain">
             <img src="/static/Images/Footer/government-icon.png"/>

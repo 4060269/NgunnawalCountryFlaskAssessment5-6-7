@@ -61,7 +61,6 @@ body {
 
 .content-section {
     margin: 1em;
-
 }
 
 .container {
@@ -123,7 +122,6 @@ body {
 body {
     background-color: #121212;
     color: whitesmoke;
-
 }
 
 .search-box-text {
@@ -131,10 +129,19 @@ body {
 }
 
 .text-box {
-    background-color: #ac5c34;
-
+    background-color: whitesmoke;
 }
 
 .btn:hover {
+    background-color: blue;
+}
+
+.nav-item:hover {
+    text-decoration: underline;
+}
+
+
+
+.hover {
     background-color: blue;
 }
