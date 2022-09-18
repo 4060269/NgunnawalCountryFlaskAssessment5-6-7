@@ -1,134 +1,155 @@
 <!DOCTYPE html>
 <head>
-  <meta charset="UTF-8"/>
+    <meta charset="UTF-8"/>
 
-  <meta
-    name="keywords"
-    content="Ngunnawal, Aboriginal, Indigenous, Gallery, History"/>
+    <meta
+            name="keywords"
+            content="Ngunnawal, Aboriginal, Indigenous, Gallery, History"/>
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
 
-  <meta
-    name="description"
-    content="This is a website that focuses on the history of the Aboriginal people living in the Canberra region, the Ngunnawal people."/>
+    <meta
+            name="description"
+            content="This is a website that focuses on the history of the Aboriginal people living in the Canberra region, the Ngunnawal people."/>
 
-  <meta
-    name="author"
-    content="Rahil Chand"/>
+    <meta
+            name="author"
+            content="Rahil Chand"/>
 
     <!-- meta tags have information about the data on the page -->
     <!-- <meta name="keywords" content="HTML, CSS, JavaScript"> used for search engines to make meaning of your page -->
     <!-- <meta http-equiv="refresh" content="30"> refreshs the doc every 30secs -->
     <!-- multiple meta tags can be used -->
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
-  <link rel="stylesheet" href="/static/css/bootstrap.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
-  <script src="/static/js/bootstrap.js"></script>
-  <link rel="stylesheet" href="/static/styles.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/static/css/bootstrap.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <script src="/static/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/static/styles.css"/>
 
-  <title>{{ title }}</title>
+    <title>{{ title }}</title>
 </head>
 
 <body>
-  <header>
+<header>
     <nav
-    class="navbar navbar-dark bg-dark navbar-expand-lg"
-    style="background-image: url(/static/Images/Requisites/Ngunnawal-country-banner.png);
+            class="navbar navbar-dark bg-dark navbar-expand-lg"
+            style="background-image: url(/static/Images/Requisites/Ngunnawal-country-banner.png);
     background-size: 1000px 150px;
     background-position: right;
     background-repeat: repeat;"
-    role="navigation">
+            role="navigation">
 
 
-    <img
-    class="navbar-brand"
-    src="/static/Images/Requisites/Ngunnawal-logo.png"
-    width="40px"
-    height="65px" href="#"></a>
+        <img
+                class="navbar-brand"
+                src="/static/Images/Requisites/Ngunnawal-logo.png"
+                width="40px"
+                height="65px" href="#"></a>
 
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
-        aria-expanded="false"
-        aria-label="Toggle navigation">
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
 
-        <span class="navbar-toggler-icon"></span>
-      </button>
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                    <a class="nav-item nav-link active"
+                       style="color: whitesmoke;"
+                       href="/">Home
+                       <span class="sr-only">(current)</span></a>
 
-          <a class="nav-item nav-link active"
-          style="color: whitesmoke;"
-          href="/">Home
-          <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link"
+                       style="color: whitesmoke;"
+                       href="/history">History</a>
 
-          <a class="nav-item nav-link"
-          style="color: whitesmoke;"
-          href="/history">History</a>
+                    <a class="nav-item nav-link"
+                       style="color: whitesmoke;"
+                       href="/gallery">Gallery</a>
 
-          <a class="nav-item nav-link"
-          style="color: whitesmoke;"
-          href="/gallery">Gallery</a>
+                    <a class="nav-item nav-link"
+                       style="color: whitesmoke;"
+                       href="/contact">Contact Us</a>
 
-          <a class="nav-item nav-link"
-          style="color: whitesmoke;"
-          href="/contact">Contact Us</a>
+                {% if user.is_anonymous %}
+                    <a class="nav-item nav-link"
+                       style="color: whitesmoke;"
+                       href="/register">User Registration</a>
 
-          <a class="nav-item nav-link"
-          style="color: whitesmoke;"
-          href="/register">User Registration</a>
-<!-- if the user is logged in, don't show this link -->
-          <a class="nav-item nav-link"
-          style="color: whitesmoke;"
-          href="/login">Login</a>
+                    <a class="nav-item nav-link"
+                       style="color: whitesmoke;"
+                       href="/login">Login</a>
 
-          <a class="nav-item nav-link"
-          style="color: whitesmoke;"
-          href="/logout">Log Out</a>
-<!-- if the user is logged in, show this link -->
-          <a class="nav-item" style="color: whitesmoke;"
-          href="/profile">Profile for {{ user.name }}</a>
+                {% elif current_user.is_admin() %}
+                    <a class="nav-item nav-link"
+                       style="color: whitesmoke;"
+                       href="/logout">Log Out</a>
 
-          <a class="nav-item nav-link"
-          style="color: whitesmoke;"
-          href="/passwordreset">Reset Password</a>
+                    <a class="nav-item" style="color: whitesmoke;"
+                       href="/profile">Profile for {{ user.name }}</a>
 
-            <div class="search-box container-fluid">
-              <form class="d-flex" role="search">
-                <input class="search-box-text form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn" type="submit">Search</button>
-              </form>
+                    <a class="nav-item nav-link"
+                       style="color: whitesmoke;"
+                       href="/passwordreset">Reset Password</a>
+
+                    <a class="nav-item nav-link"
+                       style="color: whitesmoke;"
+                       href="/contactmessages">Contact Messages</a>
+
+                {% else %}
+                    <a class="nav-item nav-link"
+                       style="color: whitesmoke;"
+                       href="/logout">Log Out</a>
+
+                    <a class="nav-item" style="color: whitesmoke;"
+                       href="/profile">Profile for {{ user.name }}</a>
+
+                    <a class="nav-item nav-link"
+                       style="color: whitesmoke;"
+                       href="/passwordreset">Reset Password</a>
+                {% endif %}
+
+                <div class="search-box container-fluid">
+                    <form class="d-flex" role="search">
+                        <input class="search-box-text form-control me-2" type="search" placeholder="Search"
+                               aria-label="Search">
+                        <button class="btn" type="submit">Search</button>
+                    </form>
+                </div>
             </div>
         </div>
-      </div>
     </nav>
 
-        {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                         <span aria-hidden="true">&times;</span>
-                         </button>
-                        {% for message in messages %}
-                        {{ message }}
-                        {% endfor %}
-                        </ul>
-                    </div>
-            {% endif %}
-        {% endwith %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endwith %}
 
     <h1
-      class="company-name company-name-large"
-      style="padding-top: 20px; padding-bottom: 20px;">Ngunnawal Country</h1>
-  </header>
+            class="company-name company-name-large"
+            style="padding-top: 20px; padding-bottom: 20px;">Ngunnawal Country</h1>
+</header>
 
-  <section class="content-section container">
+<section class="content-section container">
     <h2 class="section-header"></h2>
 
 
@@ -140,42 +161,45 @@
         {% block cellContent2 %} {% endblock %}
     </p>
 
-    <hr />
-  </section>
+    <hr/>
+</section>
 
-  <footer class="main-footer">
+<footer class="main-footer">
     <div class="container main-footer-container">
 
-      <h3 style="font-size: 1.5em;" class="company-name">Ngunnawal Country</h3>
+        <h3 style="font-size: 1.5em;" class="company-name">Ngunnawal Country</h3>
 
-      <ul class="nav footer-nav">
+        <ul class="nav footer-nav">
 
-        <li>
-          <a>
-            We acknowledge the Traditional Custodians of the ACT, the Ngunnawal
-            people. We acknowledge and respect their continuing culture and the
-            contribution they make to the life of this city and this region.
-          </a>
-        </li>
+            <li>
+                <a>
+                    We acknowledge the Traditional Custodians of the ACT, the Ngunnawal
+                    people. We acknowledge and respect their continuing culture and the
+                    contribution they make to the life of this city and this region.
+                </a>
+            </li>
 
-        <li style="width: 100%;">
-          <a href="https://www.act.gov.au/ngunnawal-country"
-          style="background-size:contain">
-            <img src="/static/Images/Footer/government-icon.png"/>
-          </a>
-        </li>
-      </ul>
+            <li style="width: 100%;">
+                <a href="https://www.act.gov.au/ngunnawal-country"
+                   style="background-size:contain">
+                    <img src="/static/Images/Footer/government-icon.png"/>
+                </a>
+            </li>
+        </ul>
     </div>
-  </footer>
+</footer>
 
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
 </body>
 
