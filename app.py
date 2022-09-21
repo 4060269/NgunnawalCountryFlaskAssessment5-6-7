@@ -99,7 +99,7 @@ def history():
 
 @app.route('/gallery', methods=['GET', 'POST'])
 def gallery():
-    return render_template("gallery.html", title="Ngunnawal Country | Gallery", user=current_user)
+    return render_template("gallerywip.html", title="Ngunnawal Country | Gallery", user=current_user)
 
 @app.route('/passwordreset', methods=['GET', 'POST'])
 @login_required
