@@ -35,4 +35,4 @@ class UserProfileForm(FlaskForm):
 class PhotoUploadForm(FlaskForm):
     title = StringField("Image Title", validators=[DataRequired()])
     image = FileField('Photo File Upload', validators=[FileRequired()])
-    submit = SubmitField("Upload Photo")
+    submit = SubmitField("Upload Photo", render_kw={"class": "btn"})

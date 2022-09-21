@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_login import current_user, login_user, LoginManager, logout_user, login_required # from prototypes or framework, create an instance
 from config import Config
+from flask_login import current_user, login_user, LoginManager, logout_user, login_required # from prototypes or framework, create an instance
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.utils import secure_filename
+import random, os
 
 
 app = Flask(__name__)
@@ -10,11 +12,12 @@ db = SQLAlchemy(app)           # creates the db object using the configuration
 login = LoginManager(app)
 login.login_view = 'login'
 
+UPLOAD_FOLDER = './static/images/userPhotos/'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-from models import Contact
-from forms import ContactForm, RegistrationForm, LoginForm, ResetPasswordForm, UserProfileForm
-from models import todo, User
-
+from models import Contact, todo, User, Photos
+from forms import ContactForm, RegistrationForm, LoginForm, ResetPasswordForm, UserProfileForm, PhotoUploadForm
 
 @app.route('/')                                                                # when this url is accessed
 def homepage():                                                               # define function
@@ -140,4 +143,11 @@ def view_contact_messages():
         return render_template("contactmessages.html", title="Ngunnawal Country | Contact Messages", user=current_user, messages=contact_messages)
     else:
         return redirect(url_for("homepage"))
-
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+@app.route('/userphotos', methods=['GET', 'POST'])
+@login_required
+def photos():
+    form = PhotoUploadForm()
+    return render_template("userPhotos.html", title="User Photos", user=current_user, form=form)
