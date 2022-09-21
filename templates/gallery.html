@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'template.html' %}
 
-</body>
-</html>
+{% block cellContent1 %}
+    <h2 class="section-header">User Photos</h2>
+{% endblock %}
+
+{% block cellContent2 %}
+    {% for image in images %}
+        <div>{{ image.title }}<br>
+            <img src="/static/Images/UserImages/{{ image.filename }}" width="20%"></div>
+    {% endfor %}
+{% endblock %}

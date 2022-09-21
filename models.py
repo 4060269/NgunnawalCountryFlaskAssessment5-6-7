@@ -1,12 +1,12 @@
-from app import db, login              # get access to the db by creating instance
+from app import db, login          # get access to the db by creating instance
 from datetime import datetime      # create an instance of real-time
-from flask_login import UserMixin
-from werkzeug.security import generate_password_hash, check_password_hash
-class Contact(db.Model):                                             # class is to store db in memory
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True) # first variable is an entry
-    name = db.Column(db.Text)                                        # it is defined as a column in db
-    email = db.Column(db.Text)                                       # the last variable is data type defined in db
-    message = db.Column(db.Text)
+from flask_login import UserMixin  # imports userMixin, provides default values for user objects
+from werkzeug.security import generate_password_hash, check_password_hash   # import from werkzeug security to give hashing functionality
+class Contact(db.Model):    # class is to store db in memory
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)    # equates the database values to simple variables
+    name = db.Column(db.Text)   # these variables are stored under the contact class
+    email = db.Column(db.Text)  #
+    message = db.Column(db.Text)    #
     dateSubmitted = db.Column(db.DateTime)
     def __init__(self, name, email, message):                        # auto runs when new contact created,
         self.name = name                                             # these are initalizaing the objects attriututes
