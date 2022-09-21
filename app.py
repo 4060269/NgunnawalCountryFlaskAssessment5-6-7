@@ -150,4 +150,17 @@ def allowed_file(filename):
 @login_required
 def photos():
     form = PhotoUploadForm()
+    if form.validate_on_submit():
+        new_image = form.image.data
+        filename = secure_filename(new_image.filename)
+
+        if new_image and allowed_file(filename):
+            new_image.save(os.path.join(UPLOAD_FOLDER, filename))
+            photo = Photos(title=form.title.data, filename=filename, userid=current_user.id)
+            db.session.add(photo)
+            db.session.commit()
+            flash("Image Uploaded")
+            return redirect(url_for("photos"))
+        else:
+            flash("The File Upload failed.")
     return render_template("userPhotos.html", title="User Photos", user=current_user, form=form)
