@@ -5,6 +5,15 @@
 {% endblock %}
 
 {% block cellContent2 %}
+    <div class="grid-container">
+        {% for image in images %}
+            <div>{{ image.title }}<br>
+                <img src="/static/images/userPhotos/{{ image.filename }}" width="20%"></div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block cellContent3 %}
     <div class="container text-left">
         <form method="post" enctype="multipart/form-data" action="">
             {{ form.hidden_tag() }}
