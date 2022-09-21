@@ -38,3 +38,14 @@ def load_user(id):
 def update_details(self, email_address, name):
     self.email_address = email_address
     self.name = name
+class Photos(db.Model):
+    photoid = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255))
+    filename = db.Column(db.String(255))
+    userid = db.Column(db.Integer)
+    dateSubmitted = db.Column(db.DateTime)
+    def __init__(self, title, filename, userid):
+        self.title = title
+        self.filename = filename
+        self.userid = userid
+        self.dateSubmitted = datetime.today()
