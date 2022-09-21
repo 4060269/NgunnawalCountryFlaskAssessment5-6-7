@@ -4,6 +4,7 @@ from flask_login import current_user, login_user, LoginManager, logout_user, log
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 import random, os
+import uuid
 
 
 app = Flask(__name__)
@@ -12,7 +13,7 @@ db = SQLAlchemy(app)           # creates the db object using the configuration
 login = LoginManager(app)
 login.login_view = 'login'
 
-UPLOAD_FOLDER = './static/images/userPhotos/'
+UPLOAD_FOLDER = './static/Images/UserImages/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -150,11 +151,17 @@ def allowed_file(filename):
 @login_required
 def photos():
     form = PhotoUploadForm()
+    user_images = Photos.query.filter_by(userid=current_user.id).all()
     if form.validate_on_submit():
         new_image = form.image.data
         filename = secure_filename(new_image.filename)
 
         if new_image and allowed_file(filename):
+            # Get the file extension of the file.
+            file_ext = filename.split(".")[1]
+            random_filename = str(uuid.uuid4())
+            filename = random_filename + "." + file_ext
+
             new_image.save(os.path.join(UPLOAD_FOLDER, filename))
             photo = Photos(title=form.title.data, filename=filename, userid=current_user.id)
             db.session.add(photo)
@@ -163,4 +170,4 @@ def photos():
             return redirect(url_for("photos"))
         else:
             flash("The File Upload failed.")
-    return render_template("userPhotos.html", title="User Photos", user=current_user, form=form)
+    return render_template("userPhotos.html", title="User Photos", user=current_user, form=form, images=user_images)

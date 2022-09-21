@@ -33,6 +33,6 @@ class UserProfileForm(FlaskForm):
     name = StringField("Full Name", validators=[DataRequired()], render_kw={"class": "text-box"})
     submit = SubmitField("Update Profile", render_kw={"class": "btn"})
 class PhotoUploadForm(FlaskForm):
-    title = StringField("Image Title", validators=[DataRequired()])
-    image = FileField('Photo File Upload', validators=[FileRequired()])
+    title = StringField("Image Title", validators=[DataRequired()], render_kw={"class": "text-box"})
+    image = FileField('Photo File Upload', validators=[FileRequired()]) # broken styling, need new class, so is text box above  render_kw={"class": "btn"}
     submit = SubmitField("Upload Photo", render_kw={"class": "btn"})
