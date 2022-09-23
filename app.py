@@ -6,7 +6,6 @@ from werkzeug.utils import secure_filename
 import random, os
 import uuid
 
-
 app = Flask(__name__)
 app.config.from_object(Config) # loads the configuration for the database
 db = SQLAlchemy(app)           # creates the db object using the configuration
@@ -145,9 +144,11 @@ def view_contact_messages():
         return render_template("contactmessages.html", title="Ngunnawal Country | Contact Messages", user=current_user, messages=contact_messages)
     else:
         return redirect(url_for("homepage"))
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 @app.route('/userphotos', methods=['GET', 'POST'])
 @login_required
 def photos():
