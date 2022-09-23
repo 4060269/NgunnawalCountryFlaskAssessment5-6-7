@@ -25,7 +25,7 @@ package NgunnawalWebsite {
 }
 
 ' this is directing actors to the use case with an arrow,
-' using the 'code' names of each elements
+' using the 'code' names of each element
 unregistered --> UC1
 unregistered --> UC2
 unregistered --> UC6

@@ -34,17 +34,24 @@ def contact():
     return render_template("contact.html", title="Ngunnawal Country | Contact Us!", form=form, user=current_user) # send back an empty form
 
 @app.route('/todo', methods=["POST", "GET"])                        # creates a new route, called to do and adds functionality of POST and GET methods
-def view_todo():                                                    # def for define followed by function name
-    all_todo = db.session.query(todo).all()                         # queries and retrieves the whole to do table, the results are stored into the all_todo variable
-    if request.method == "POST":                                    # Checks to do form cellContent1 is attempting to submit data back to the server (POST).
-        new_todo = todo(text=request.form['text'])                  # Creates a new variable - new_todo - with all data submitted
-        new_todo.done = False                                       # Sets done field to False in table
-        db.session.add(new_todo)                                    # temporarily writes entry into database, then commits to database permanently
-        db.session.commit()
-        db.session.refresh(new_todo)
-        flash("Your have successfully created a new task!")
-        return redirect("/todo")                                    # after previous lines success, this will refresh page
-    return render_template("todo.html", title="Ngunnawal Country | To Do List", todos=all_todo, user=current_user)             # Sends Jinja template with data from to do table
+def view_todo():                                                       # def for define followed by function name
+    user = User.query.filter_by(email_address=user.email_address).first()
+
+    if user.is_admin():
+        all_todo = db.session.query(todo).all()  # queries and retrieves the whole to do table, the results are stored into the all_todo variable
+        if request.method == "POST":  # Checks to do form cellContent1 is attempting to submit data back to the server (POST).
+            new_todo = todo(text=request.form['text'])  # Creates a new variable - new_todo - with all data submitted
+            new_todo.done = False  # Sets done field to False in table
+            db.session.add(new_todo)  # temporarily writes entry into database, then commits to database permanently
+            db.session.commit()
+            db.session.refresh(new_todo)
+            flash("Your have successfully created a new task!")
+            return redirect("/todo")  # after previous lines success, this will refresh page
+        return render_template("todo.html", title="Ngunnawal Country | To Do List", todos=all_todo, user=current_user)  # Sends Jinja template with data from to do table
+    else:
+        return redirect("/homepage", code=402)
+
+
 
 @app.route("/todoedit/<todo_id>", methods=["POST", "GET"])          # Creates route, unique cos it accepts a variable in the route
 def edit_note(todo_id):                                             # function definition
