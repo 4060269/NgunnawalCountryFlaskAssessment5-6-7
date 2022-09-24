@@ -6,9 +6,11 @@
 
 {% block cellContent2 %}
     {% for message in messages %}
-        <div> {{ message.name }} </div>
-        <div> {{ message.email }} </div>
-        <div> {{ message.message }} </div>
-        <div> {{ message.dateSubmitted.strftime('%H:%M - %d/%m/%Y') }} </div>
+        <p> <h3 style="font-size: 1.2rem; font-weight: bold">Name:</h3> {{ message.name }} </p>
+        <p> <h3 style="font-size: 1.2rem; font-weight: bold">Email:</h3> {{ message.email }} </p>
+        <p> <h3 style="font-size: 1.2rem; font-weight: bold">Message:</h3> {{ message.message }} </p>
+        <p> <h3 style="font-size: 1.2rem; font-weight: bold">Time:</h3> {{ message.dateSubmitted.strftime('%H:%M - %d/%m/%Y') }} </p>
+        <br>
+        <br>
     {% endfor %}
 {% endblock %}
