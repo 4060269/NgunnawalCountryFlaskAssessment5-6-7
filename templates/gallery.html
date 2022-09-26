@@ -1,16 +1,51 @@
 {% extends 'template.html' %}
 
 {% block cellContent1 %}
-    <h2 class="section-header">Gallery</h2>
+    <h2 class="section-header">Company Gallery</h2>
 {% endblock %}
 
 {% block cellContent2 %}
     {% if user.is_anonymous %}
-        User photos unavailibe, please register to see, they should still see company submitted photos
+        User photos unavailable, please register to get access.
     {% else %}
+        <p>
+        <div class="slideshow-container">
+
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides">
+            <div class="text"><h3 class="section-header" style="font-size: 1.2rem">Ngunnawal Country Colours</h3>
+            <img src="/static/Images/Content/ngunnawal-country-colours.png" style="width:100%">
+        </div>
+        <br>
+        <br>
+        <div class="mySlides">
+            <div class="text"><h3 class="section-header" style="font-size: 1.2rem">Bridge over Ginnindera Creek</h3></div>
+            <img src="/static/Images/Content/ngunnawal-spelio.png" style="width:100%">
+        </div>
+        <br>
+        <br>
+        <div class="mySlides">
+            <div class="text"><h3 class="section-header" style="font-size: 1.2rem">Ngunnawal malunggari bulu</h3></div>
+            <img src="/static/Images/Content/ngunnawal-pierre-pouliquin.jpg" style="width:100%">
+        </div>
+        <br>
+        <br>
+        </p>
+
+        <p>
+        <h3 class="section-header">User Photo Gallery</h3>
+        </p>
         {% for image in images %}
-            <div>{{ image.title }}<br>
-                <img src="/static/Images/UserImages/{{ image.filename }}" width="20%"></div>
+            <p>
+                {{ image.title }}
+                <br>
+                <img src="/static/Images/UserImages/{{ image.filename }}" width="20%">
+            </p>
         {% endfor %}
     {% endif %}
+
+
+
+
+
 {% endblock %}
