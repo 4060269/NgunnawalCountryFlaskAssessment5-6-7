@@ -5,13 +5,9 @@
 {% endblock %}
 
 {% block cellContent2 %}
-    {% if user.is_anonymous %}
-        User photos unavailable, please register to get access.
-    {% else %}
         <p>
         <div class="slideshow-container">
 
-        <!-- Full-width images with number and caption text -->
         <div class="mySlides">
             <div class="text"><h3 class="section-header" style="font-size: 1.2rem">Ngunnawal Country Colours</h3>
             <img src="/static/Images/Content/ngunnawal-country-colours.png" style="width:100%">
@@ -42,10 +38,4 @@
                 <img src="/static/Images/UserImages/{{ image.filename }}" width="20%">
             </p>
         {% endfor %}
-    {% endif %}
-
-
-
-
-
 {% endblock %}
