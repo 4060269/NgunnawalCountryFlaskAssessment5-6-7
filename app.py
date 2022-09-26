@@ -33,11 +33,10 @@ def contact():
         flash("Your have successfully sent a message to us!")
     return render_template("contact.html", title="Ngunnawal Country | Contact Us!", form=form, user=current_user) # send back an empty form
 
-@app.route('/todo', methods=["POST", "GET"])                        # creates a new route, called to do and adds functionality of POST and GET methods
-def view_todo():                                                       # def for define followed by function name
-    user = User.query.filter_by(email_address=user.email_address).first()
-
-    if user.is_admin():
+@app.route('/todo', methods=["POST", "GET"])
+@login_required                                     # creates a new route, called to do and adds functionality of POST and GET methods
+def view_todo():                      # def for define followed by function name
+    if current_user.is_admin():
         all_todo = db.session.query(todo).all()  # queries and retrieves the whole to do table, the results are stored into the all_todo variable
         if request.method == "POST":  # Checks to do form cellContent1 is attempting to submit data back to the server (POST).
             new_todo = todo(text=request.form['text'])  # Creates a new variable - new_todo - with all data submitted
@@ -49,9 +48,8 @@ def view_todo():                                                       # def for
             return redirect("/todo")  # after previous lines success, this will refresh page
         return render_template("todo.html", title="Ngunnawal Country | To Do List", todos=all_todo, user=current_user)  # Sends Jinja template with data from to do table
     else:
-        return redirect("/homepage", code=402)
-
-
+        flash("You are not allowed to access this page")
+        return redirect(url_for("homepage"))
 
 @app.route("/todoedit/<todo_id>", methods=["POST", "GET"])          # Creates route, unique cos it accepts a variable in the route
 def edit_note(todo_id):                                             # function definition
@@ -150,6 +148,7 @@ def view_contact_messages():
         contact_messages = Contact.query.all()
         return render_template("contactmessages.html", title="Ngunnawal Country | Contact Messages", user=current_user, messages=contact_messages)
     else:
+        flash("You are not allowed to access this page")
         return redirect(url_for("homepage"))
 
 def allowed_file(filename):
