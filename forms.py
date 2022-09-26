@@ -34,5 +34,5 @@ class UserProfileForm(FlaskForm):
     submit = SubmitField("Update Profile", render_kw={"class": "btn"})
 class PhotoUploadForm(FlaskForm):
     title = StringField("Image Title", validators=[DataRequired()], render_kw={"class": "text-box"})
-    image = FileField('Photo File Upload', validators=[FileRequired()]) # broken styling, need new class, so is text box above  render_kw={"class": "btn"}
+    image = FileField('Photo File Upload', validators=[FileRequired()])
     submit = SubmitField("Upload Photo", render_kw={"class": "btn"})

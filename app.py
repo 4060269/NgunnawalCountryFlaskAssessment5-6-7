@@ -155,7 +155,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/userphotos', methods=['GET', 'POST'])
+@app.route('/uploadphotos', methods=['GET', 'POST'])
 @login_required
 def photos():
     form = PhotoUploadForm()
@@ -178,4 +178,4 @@ def photos():
             return redirect(url_for("photos"))
         else:
             flash("The File Upload failed.")
-    return render_template("userPhotos.html", title="User Photos", user=current_user, form=form, images=user_images)
+    return render_template("uploadphotos.html", title="Upload Photos", user=current_user, form=form, images=user_images)
