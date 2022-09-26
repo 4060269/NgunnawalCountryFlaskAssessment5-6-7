@@ -103,8 +103,11 @@ def history():
 
 @app.route('/gallery', methods=['GET', 'POST'])
 def gallery():
-    all_images = Photos.query.all()
-    return render_template("gallery.html", title="Ngunnawal Country | Gallery", user=current_user, images=all_images)
+    if current_user.is_anonymous():
+        return render_template("galleryanonymous.html" )
+    else:
+    user_images = Photos.query.filter_by(userid=current_user.id).all()
+    return render_template("gallery.html", title="Ngunnawal Country | Gallery", user=current_user, images=user_images)
 
 @app.route('/passwordreset', methods=['GET', 'POST'])
 @login_required
@@ -159,7 +162,6 @@ def allowed_file(filename):
 @login_required
 def photos():
     form = PhotoUploadForm()
-    user_images = Photos.query.filter_by(userid=current_user.id).all()
     if form.validate_on_submit():
         new_image = form.image.data
         filename = secure_filename(new_image.filename)
@@ -178,4 +180,4 @@ def photos():
             return redirect(url_for("photos"))
         else:
             flash("The File Upload failed.")
-    return render_template("uploadphotos.html", title="Upload Photos", user=current_user, form=form, images=user_images)
+    return render_template("uploadphotos.html", title="Upload Photos", user=current_user, form=form)
