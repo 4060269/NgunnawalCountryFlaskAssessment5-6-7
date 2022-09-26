@@ -124,10 +124,9 @@ def history():
 
 
 @app.route('/gallery', methods=['GET', 'POST'])
-# how?
 def gallery():
     if current_user.is_anonymous:
-        return render_template("galleryanonymous.html", title="Ngunnawal Country | Gallery")
+        return render_template("galleryanonymous.html", title="Ngunnawal Country | Gallery", user=current_user)
     else:
         user_images = Photos.query.filter_by(userid=current_user.id).all()
     return render_template("gallery.html", title="Ngunnawal Country | Gallery", user=current_user, images=user_images)
