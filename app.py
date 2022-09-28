@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 import uuid
 import os
+
 # import random
 # from prototypes or framework, create an instance
 
@@ -25,12 +26,14 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 from models import Contact, todo, User, Photos
 from forms import ContactForm, RegistrationForm, LoginForm, ResetPasswordForm, UserProfileForm, PhotoUploadForm
 
+
 @app.route('/')
 # when this url is accessed
 def homepage():
     # define function
     return render_template("index.html", title="Ngunnawal Country | Home", user=current_user)
     # send back much of index html and change the title via jinja
+
 
 @app.route("/contact", methods=["POST", "GET"])
 # user requests contact html, allows data back to the serve
@@ -115,7 +118,8 @@ def register():
         db.session.commit()
         flash("Your have successfully registered your account")
         return redirect(url_for("homepage"))
-    return render_template("registration.html", title="Ngunnawal Country | User Registration", form=form, user=current_user)
+    return render_template("registration.html", title="Ngunnawal Country | User Registration", form=form,
+                           user=current_user)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -163,7 +167,8 @@ def reset_password():
         db.session.commit()
         flash("Your password has been reset")
         return redirect(url_for("homepage"))
-    return render_template('passwordreset.html', title="Ngunnawal Country | Password Reset", form=form, user=current_user)
+    return render_template('passwordreset.html', title="Ngunnawal Country | Password Reset", form=form,
+                           user=current_user)
 
 
 @app.errorhandler(404)

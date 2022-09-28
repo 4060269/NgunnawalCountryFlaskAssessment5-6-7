@@ -1,7 +1,7 @@
 {% extends 'template.html' %}
 
 {% block cellContent1 %}
-<h2 class="section-header">Contact Messages</h2>
+    <h2 class="section-header">Contact Messages</h2>
 {% endblock %}
 
 {% block cellContent2 %}
@@ -9,7 +9,8 @@
         <p> <h3 style="font-size: 1.2rem; font-weight: bold">Name:</h3> {{ message.name }} </p>
         <p> <h3 style="font-size: 1.2rem; font-weight: bold">Email:</h3> {{ message.email }} </p>
         <p> <h3 style="font-size: 1.2rem; font-weight: bold">Message:</h3> {{ message.message }} </p>
-        <p> <h3 style="font-size: 1.2rem; font-weight: bold">Time:</h3> {{ message.dateSubmitted.strftime('%H:%M - %d/%m/%Y') }} </p>
+        <p> <h3 style="font-size: 1.2rem; font-weight: bold">Time:</h3>
+        {{ message.dateSubmitted.strftime('%H:%M - %d/%m/%Y') }} </p>
         <br>
         <br>
     {% endfor %}

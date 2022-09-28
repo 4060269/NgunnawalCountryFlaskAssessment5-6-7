@@ -6,16 +6,16 @@
 
 {% block cellContent2 %}
     <p>
-        <p>
-            <form method="POST" action="/todo">
-            <input class="text-box" type="text" name="text" placeholder="Add a new item">
-            <br>
-            <br>
-            <button class="btn" type="submit" value="update">Create new Todo Entry</button>
-            </form>
-        </p>
+    <p>
+    <form method="POST" action="/todo">
+        <input class="text-box" type="text" name="text" placeholder="Add a new item">
         <br>
         <br>
+        <button class="btn" type="submit" value="update">Create new Todo Entry</button>
+    </form>
+    </p>
+    <br>
+    <br>
 
     {% for todo in todos %}
         <p>
