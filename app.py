@@ -15,9 +15,7 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 # creates the db object using the configuration
 
-login_manager = LoginManager()
 login = LoginManager(app)
-login_manager.init_app(app)
 login.login_view = 'login'
 
 UPLOAD_FOLDER = './static/Images/UserImages/'
@@ -26,10 +24,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 from models import Contact, todo, User, Photos
 from forms import ContactForm, RegistrationForm, LoginForm, ResetPasswordForm, UserProfileForm, PhotoUploadForm
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.filter_by(id=user_id).first()
 
 @app.route('/')
 # when this url is accessed
@@ -167,8 +161,8 @@ def reset_password():
         user = User.query.filter_by(email_address=current_user.email_address).first()
         user.set_password(form.new_password.data)
         db.session.commit()
-        flash("Your Password has been reset")
-        return redirect(url_for('homepage'))
+        flash("Your password has been reset")
+        return redirect(url_for("homepage"))
     return render_template('passwordreset.html', title="Ngunnawal Country | Password Reset", form=form, user=current_user)
 
 

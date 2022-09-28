@@ -36,14 +36,12 @@ class User(UserMixin, db.Model):
             return True
         else:
             return False
-
+    def update_details(self, email_address, name):
+        self.email_address = email_address
+        self.name = name
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
-
-def update_details(self, email_address, name):
-    self.email_address = email_address
-    self.name = name
 
 class Photos(db.Model):
     photoid = db.Column(db.Integer, primary_key=True)
