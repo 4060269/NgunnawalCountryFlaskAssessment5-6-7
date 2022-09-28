@@ -27,7 +27,7 @@ from models import Contact, todo, User, Photos
 from forms import ContactForm, RegistrationForm, LoginForm, ResetPasswordForm, UserProfileForm, PhotoUploadForm
 
 
-@app.route('/')
+@app.route("/")
 # when this url is accessed
 def homepage():
     # define function
@@ -49,13 +49,15 @@ def contact():
         db.session.commit()
         # commits write to db
         flash("Your have successfully sent a message to us!")
+    else:
+        flash("The detail update has failed")
     return render_template("contact.html", title="Ngunnawal Country | Contact Us!", form=form, user=current_user)
-    # send back an empty form
+    # sends back the same form with a flash message
 
 
-@app.route('/todo', methods=["POST", "GET"])
+@app.route("/todo", methods=["POST", "GET"])
 @login_required
-# creates a new route, called to do and adds functionality of POST and GET methods
+# creates a new route, called to-do and adds functionality of POST and GET methods
 def view_todo():
     # def for define followed by function name
     if current_user.is_admin():
@@ -63,7 +65,7 @@ def view_todo():
         # queries and retrieves the whole to do table, the results are stored into the all_todo variable
         if request.method == "POST":
             # Checks to do form cellContent1 is attempting to submit data back to the server (POST).
-            new_todo = todo(text=request.form['text'])
+            new_todo = todo(text=request.form["text"])
             # Creates a new variable - new_todo - with all data submitted
             new_todo.done = False
             # Sets done field to False in table
@@ -192,7 +194,7 @@ def profile():
     if form.validate_on_submit():
         user.update_details(email_address=form.email_address.data, name=form.name.data)
         db.session.commit()
-        flash("Your details have been changed")
+        flash("Your details have been changed successfully")
         return redirect(url_for("homepage"))
     return render_template("userprofile.html", title="Ngunnawal Country | Profile", user=current_user, form=form)
 
