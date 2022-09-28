@@ -29,7 +29,8 @@
         </p>
 
         <p>
-            {% if user.user_level==1 %} Administrator
+            {% if user.user_level==2 %}
+                Administrator
             {% else %}
                 User Level - {{ user.user_level }}
             {% endif %}

@@ -227,8 +227,8 @@ def photos():
             photo = Photos(title=form.title.data, filename=filename, userid=current_user.id)
             db.session.add(photo)
             db.session.commit()
-            flash("Image Uploaded")
+            flash("Image has been successfully uploaded!")
             return redirect(url_for("photos"))
         else:
-            flash("The File Upload failed.")
+            flash("The image upload has failed")
     return render_template("uploadphotos.html", title="Upload Photos", user=current_user, form=form)
