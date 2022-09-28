@@ -5,23 +5,27 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 import uuid
 import os
-
 # import random
-# from prototypes or framework, create an instance
+# these imports provide the functionality of the app
 
 app = Flask(__name__)
-
+# faster and cleaner way of calling the app.py flask instance
 app.config.from_object(Config)
-# loads the configuration for the database
+# easier time when developing app between different devices
 db = SQLAlchemy(app)
-# creates the db object using the configuration
+# easier name when trying to refer to the database
 
 login = LoginManager(app)
+# more convenient way of referring to this specific class in app's flask instance
 login.login_view = 'login'
+# what does the full stop do?
 
 UPLOAD_FOLDER = './static/Images/UserImages/'
+# shortening long folder path to a simple variable
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+# much quicker way of defining what extensions are allowed to be uploaded
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+#
 
 from models import Contact, todo, User, Photos
 from forms import ContactForm, RegistrationForm, LoginForm, ResetPasswordForm, UserProfileForm, PhotoUploadForm
