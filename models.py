@@ -36,6 +36,8 @@ class todo(db.Model):
     done = db.Column(db.Boolean)
     # Needed to create, track and determine whether an item is completed or not
     # Accessing columnar database
+    # Then selecting column type
+    # Other arguments are unique column configuration/s
 
 
 class User(UserMixin, db.Model):
@@ -45,27 +47,35 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(255))
     user_level = db.Column(db.Integer)
     # UserMixin is required to get properties of a user to be displayed
+    # Limit data taken to 255 characters
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
+        # Need to hash the password before it is sent to server
+        # Take the password and generate an SHA-256 hash to be sent
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+        # Needed for password confirmation fields in forms
+        # Check the sent password hash against any valid hash's in db
 
     def is_admin(self):
         if self.user_level == 2:
             return True
         else:
             return False
+        # Create an is admin function to easily define and separate admin functionality
 
     def update_details(self, email_address, name):
         self.email_address = email_address
         self.name = name
-
+        # Almost the inverse to the set_password function
+        # Take the entered data and override the old data
 
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+# Needed to load users by their unique id's and not by common attributes like names
 
 
 class Photos(db.Model):
@@ -74,7 +84,8 @@ class Photos(db.Model):
     filename = db.Column(db.String(255))
     userid = db.Column(db.Integer)
     dateSubmitted = db.Column(db.DateTime)
-    #
+    # Taking and storing attributes of the uploaded image
+    # Title and filename both are limited to avoid users overloading the storage server
 
     def __init__(self, title, filename, userid):
         self.title = title
