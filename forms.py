@@ -1,18 +1,23 @@
+# Forms.py is where all the form code goes
+# To keep it easily maintainable and editable
+
 from flask_wtf import FlaskForm
-from wtforms.validators import DataRequired, Email, EqualTo, \
-    ValidationError  # from prototypes or framework, create an instance
+from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 from wtforms import StringField, SubmitField, IntegerField, PasswordField, FileField
 from flask_wtf.file import FileRequired
 from models import User
+# Using flask's integrated form class's from, flask_wtf, to easily send forms in the one object request of the website
+#
 
 
-class ContactForm(FlaskForm):  # create a py class, it will be used as flask form
-    name = StringField("Name", validators=[DataRequired()],
-                       render_kw={"class": "text-box"})  # defined as stringfield, to indicate string data
-    email = StringField("Email", validators=[DataRequired(), Email()], render_kw={
-        "class": "text-box"})  # text in double quotes are displayed on form by using jinja block
-    message = StringField("Message", validators=[DataRequired()], render_kw={
-        "class": "text-box"})  # validators make it a requirement to put infomation in all boxes, email() makes it to be a vaild one
+class ContactForm(FlaskForm):
+    # create a py class, it will be used as flask form
+    name = StringField("Name", validators=[DataRequired()], render_kw={"class": "text-box"})
+    # defined as stringfield, to indicate string data
+    email = StringField("Email", validators=[DataRequired(), Email()], render_kw={"class": "text-box"})
+    # text in double quotes are displayed on form by using jinja block
+    message = StringField("Message", validators=[DataRequired()], render_kw={"class": "text-box"})
+    # validators make it a requirement to put infomation in all boxes, email() makes it to be a vaild one
     submit = SubmitField('Submit', render_kw={"class": "btn"})
 
 
