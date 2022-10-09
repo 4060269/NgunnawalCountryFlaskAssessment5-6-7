@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 import uuid
 import os
 # import random
-# these imports provide the functionality of the app
+# These imports provide the functionality of the app
 
 app = Flask(__name__)
 # faster and cleaner way of calling the app.py flask instance
