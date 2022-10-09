@@ -1,4 +1,5 @@
 import os
+# Need to interact with clients OS to get time,
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
