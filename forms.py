@@ -6,8 +6,9 @@ from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 from wtforms import StringField, SubmitField, IntegerField, PasswordField, FileField
 from flask_wtf.file import FileRequired
 from models import User
-# Using flask's integrated form class's from, flask_wtf, to easily send forms in the one object request of the website
-#
+# Using flask's integrated form class's from, flask_wtf called wtforms,
+# to easily send forms in the one object request of the website
+# Need the user information from models to associate users to forms
 
 
 class ContactForm(FlaskForm):
@@ -19,6 +20,7 @@ class ContactForm(FlaskForm):
     message = StringField("Message", validators=[DataRequired()], render_kw={"class": "text-box"})
     # validators make it a requirement to put infomation in all boxes, email() makes it to be a vaild one
     submit = SubmitField('Submit', render_kw={"class": "btn"})
+    # render_kw used to keep the UI of the website consistent
 
 
 class RegistrationForm(FlaskForm):
@@ -35,7 +37,7 @@ def validate_email_address(self, email_address_to_register):
     user = User.query.filter_by(email_address=email_address_to_register.data).first()
     if user is not None:
         raise ValidationError("Please Use a Different Email Address")
-
+    # Need to validate if the user submitting data has a valid email address in db to avoid spam and security issues
 
 class LoginForm(FlaskForm):
     email_address = StringField('Email Address', validators=[DataRequired()], render_kw={"class": "text-box"})
