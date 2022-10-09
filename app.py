@@ -9,38 +9,38 @@ import os
 # These imports provide the functionality of the app
 
 app = Flask(__name__)
-# faster and cleaner way of calling the app.py flask instance
+# Faster and cleaner way of calling the app.py flask instance
 app.config.from_object(Config)
-# easier time when developing app between different devices
+# Easier time when developing app between different devices
 db = SQLAlchemy(app)
-# easier name when trying to refer to the database
+# Easier name when trying to refer to the database
 
 login = LoginManager(app)
-# more convenient way of referring to this specific class in app's flask instance
+# More convenient way of referring to this specific class in app's flask instance
 login.login_view = 'login'
-# what does the full stop do?
+# Set class to string for convenience
 
 UPLOAD_FOLDER = './static/Images/UserImages/'
-# shortening long folder path to a simple variable
+# Shortening long folder path to a simple variable
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-# much quicker way of defining what extensions are allowed to be uploaded
+# Much quicker way of defining what extensions are allowed to be uploaded
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-#
+# Simplification for interacting with the upload folder
 
 from models import Contact, todo, User, Photos
 from forms import ContactForm, RegistrationForm, LoginForm, ResetPasswordForm, UserProfileForm, PhotoUploadForm
+# Linking all code here to be requested and put onto users displays based on routes
 
 
 @app.route("/")
-# when this url is accessed
+# Use traditional convention by making "/" the root route
 def homepage():
-    # define function
     return render_template("index.html", title="Ngunnawal Country | Home", user=current_user)
-    # send back much of index html and change the title via jinja
+    #
 
 
 @app.route("/contact", methods=["POST", "GET"])
-# user requests contact html, allows data back to the serve
+# Add the name of the page as the new route for simplicity
 def contact():
     form = ContactForm()
     # load contact from models and store it locally

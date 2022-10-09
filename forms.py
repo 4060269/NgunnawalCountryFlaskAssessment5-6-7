@@ -14,11 +14,11 @@ from models import User
 class ContactForm(FlaskForm):
     # create a py class, it will be used as flask form
     name = StringField("Name", validators=[DataRequired()], render_kw={"class": "text-box"})
-    # defined as stringfield, to indicate string data
+    # defined as string-field, to indicate string data
     email = StringField("Email", validators=[DataRequired(), Email()], render_kw={"class": "text-box"})
     # text in double quotes are displayed on form by using jinja block
     message = StringField("Message", validators=[DataRequired()], render_kw={"class": "text-box"})
-    # validators make it a requirement to put infomation in all boxes, email() makes it to be a vaild one
+    # validators make it a requirement to put information in all boxes, email() makes it to be a valid one
     submit = SubmitField('Submit', render_kw={"class": "btn"})
     # render_kw used to keep the UI of the website consistent
 
@@ -38,6 +38,7 @@ def validate_email_address(self, email_address_to_register):
     if user is not None:
         raise ValidationError("Please Use a Different Email Address")
     # Need to validate if the user submitting data has a valid email address in db to avoid spam and security issues
+
 
 class LoginForm(FlaskForm):
     email_address = StringField('Email Address', validators=[DataRequired()], render_kw={"class": "text-box"})
