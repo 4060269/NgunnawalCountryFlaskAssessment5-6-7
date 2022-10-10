@@ -36,34 +36,36 @@ from forms import ContactForm, RegistrationForm, LoginForm, ResetPasswordForm, U
 # Use traditional convention by making "/" the root route
 def homepage():
     return render_template("index.html", title="Ngunnawal Country | Home", user=current_user)
-    #
+    # Send them the landing/home page on first visit to introduce them to the website
 
 
 @app.route("/contact", methods=["POST", "GET"])
 # Add the name of the page as the new route for simplicity
 def contact():
     form = ContactForm()
-    # load contact from models and store it locally
+    # Load contact from models and store it locally
     if form.validate_on_submit():
-        # checking if the user has pressed submit
+        # Checking if the user has pressed submit
         new_contact = Contact(name=form.name.data, email=form.email.data, message=form.message.data)
-        # create new object which has these fields and the data that was submitted
+        # Create new object which has these fields and the data that was submitted
         db.session.add(new_contact)
-        # temporarily writes to db
+        # Temporarily writes to db
         db.session.commit()
-        # commits write to db
+        # Commits write to db
         flash("Your have successfully sent a message to us!")
+        # Inform the user that the message has sent, as it isn't clear otherwise
     else:
         flash("The detail update has failed")
+        # Delete else for dev log
     return render_template("contact.html", title="Ngunnawal Country | Contact Us!", form=form, user=current_user)
-    # sends back the same form with a flash message
+    # Sends back the same form with a flash message
 
 
 @app.route("/todo", methods=["POST", "GET"])
+# Creates a new route, called to-do and adds functionality of POST and GET methods
 @login_required
-# creates a new route, called to-do and adds functionality of POST and GET methods
+# We need to authenticate that the user is an admin, if they are not, they are automatically redirected
 def view_todo():
-    # def for define followed by function name
     if current_user.is_admin():
         all_todo = db.session.query(todo).all()
         # queries and retrieves the whole to do table, the results are stored into the all_todo variable
@@ -74,12 +76,11 @@ def view_todo():
             new_todo.done = False
             # Sets done field to False in table
             db.session.add(new_todo)
-            # temporarily writes entry into database, then commits to database permanently
             db.session.commit()
             db.session.refresh(new_todo)
             flash("Your have successfully created a new task!")
             return redirect("/todo")
-            # after previous lines success, this will refresh page
+            # After the previous line's success, this will refresh page
         return render_template("todo.html", title="Ngunnawal Country | To Do List", todos=all_todo, user=current_user)
         # Sends Jinja template with data from to do table
     else:
@@ -88,29 +89,23 @@ def view_todo():
 
 
 @app.route("/todoedit/<todo_id>", methods=["POST", "GET"])
-# Creates route, unique cos it accepts a variable in the route
+# Placing a variable in the route to differentiate different items
 def edit_note(todo_id):
-    # function definition
     if request.method == "POST":
-        # checks for a post
         db.session.query(todo).filter_by(id=todo_id).update({
-            # queries to find same id
-            "text": request.form['text'],
-            # if true, it updates text to whatever user wrote
-            "done": True if request.form['done'] == "on" else False
+            # Queries to find same ID to allow editing
+            "text": request.form['text'], "done": True if request.form['done'] == "on" else False
+            # If found, it updates text to whatever user wrote
         })
         db.session.commit()
-        # commits changes to db
         flash("Your have successfully updated a task!")
     elif request.method == "GET":
-        # if user getting page
         db.session.query(todo).filter_by(id=todo_id).delete()
-        # queries to find ids with to do and deletes
+        # Instead find ID to delete when they select a task
         db.session.commit()
-        # commits changes to db
         flash("Your have successfully deleted a task!")
     return redirect("/todo", code=302)
-    # sends an error to the user that the url has been moved
+    # Sends an error to the user that the url has been moved
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -118,7 +113,6 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         new_user = User(email_address=form.email_address.data, name=form.name.data, user_level=1)
-        # defaults to regular user
         new_user.set_password(form.password.data)
         db.session.add(new_user)
         db.session.commit()
