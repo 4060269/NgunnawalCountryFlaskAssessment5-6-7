@@ -120,7 +120,7 @@ def register():
         return redirect(url_for("homepage"))
     return render_template("registration.html", title="Ngunnawal Country | User Registration", form=form,
                            user=current_user)
-
+    # Once details are entered and submitted, we need to take data, make it local, set properties then commit to db
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
