@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 import uuid
 import os
+
 # import random
 # These imports provide the functionality of the app
 
@@ -29,6 +30,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 from models import Contact, todo, User, Photos
 from forms import ContactForm, RegistrationForm, LoginForm, ResetPasswordForm, UserProfileForm, PhotoUploadForm
+
+
 # Linking all code here to be requested and put onto users displays based on routes
 
 
@@ -54,9 +57,6 @@ def contact():
         # Commits write to db
         flash("Your have successfully sent a message to us!")
         # Inform the user that the message has sent, as it isn't clear otherwise
-    else:
-        flash("The detail update has failed")
-        # Delete else for dev log
     return render_template("contact.html", title="Ngunnawal Country | Contact Us!", form=form, user=current_user)
     # Sends back the same form with a flash message
 
@@ -121,6 +121,7 @@ def register():
     return render_template("registration.html", title="Ngunnawal Country | User Registration", form=form,
                            user=current_user)
     # Once details are entered and submitted, we need to take data, make it local, set properties then commit to db
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

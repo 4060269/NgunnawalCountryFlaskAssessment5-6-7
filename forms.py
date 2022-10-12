@@ -6,6 +6,8 @@ from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 from wtforms import StringField, SubmitField, IntegerField, PasswordField, FileField
 from flask_wtf.file import FileRequired
 from models import User
+
+
 # Using flask's integrated form class's from, flask_wtf called wtforms,
 # to easily send forms in the one object request of the website
 # Need the user information from models to associate users to forms

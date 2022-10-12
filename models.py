@@ -8,6 +8,8 @@ from datetime import datetime
 from flask_login import UserMixin
 # Creates easier development with all the default values
 from werkzeug.security import generate_password_hash, check_password_hash
+
+
 # Import from werkzeug security to provide hashing functionality
 
 
@@ -17,6 +19,7 @@ class Contact(db.Model):
     email = db.Column(db.Text)
     message = db.Column(db.Text)
     dateSubmitted = db.Column(db.DateTime)
+
     # Class is to store db in memory
     # Need to have a model of db to take and send tables and fields
     # Equates the database values to simple local variables
@@ -46,6 +49,7 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(255))
     password_hash = db.Column(db.String(255))
     user_level = db.Column(db.Integer)
+
     # UserMixin is required to get properties of a user to be displayed
     # Limit data taken to 255 characters
 
@@ -72,9 +76,12 @@ class User(UserMixin, db.Model):
         # Almost the inverse to the set_password function
         # Take the entered data and override the old data
 
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+
+
 # Needed to load users by their unique id's and not by common attributes like names
 
 
@@ -84,6 +91,7 @@ class Photos(db.Model):
     filename = db.Column(db.String(255))
     userid = db.Column(db.Integer)
     dateSubmitted = db.Column(db.DateTime)
+
     # Taking and storing attributes of the uploaded image
     # Title and filename both are limited to avoid users overloading the storage server
 

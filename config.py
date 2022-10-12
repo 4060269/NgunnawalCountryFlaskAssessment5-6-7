@@ -1,7 +1,10 @@
 import os
+
 # Need to interact with clients OS to get time, set paths and use crypto methods
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+
+
 # Required for application and code to run properly
 
 
