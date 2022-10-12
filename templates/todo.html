@@ -1,11 +1,8 @@
 {% extends 'template.html' %}
 
 {% block cellContent1 %}
-    <h2 class="section-header">To Do List</h2>
-{% endblock %}
-
-{% block cellContent2 %}
-    <p>
+    <!--suppress ALL -->
+ent2 %}
     <p>
     <form method="POST" action="/todo">
         <input class="text-box" type="text" name="text" placeholder="Add a new item">
@@ -36,7 +33,6 @@
         <form method="GET" action="/todoedit/{{ todo.id }}">
             <button class="btn" type="submit" value="delete">Delete</button>
         </form>
-        </p>
         </p>
 
     {% endfor %}
