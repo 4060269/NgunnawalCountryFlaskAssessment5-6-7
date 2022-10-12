@@ -2,7 +2,10 @@
 
 {% block cellContent1 %}
     <!--suppress ALL -->
-ent2 %}
+    <h2 class="section-header">To Do List</h2>
+{% endblock %}
+
+{% block cellContent2 %}
     <p>
     <form method="POST" action="/todo">
         <input class="text-box" type="text" name="text" placeholder="Add a new item">
@@ -21,8 +24,7 @@ ent2 %}
             <input type="checkbox" onclick="redirect('/todoedit/{{ todo.id }}')"
                    data-target="/todoedit/{{ todo.id }}"
                    name="done">
-            <input class="text-box" type="text" title="{{ todo.dateAdded }}" value="{{ todo.text }}" name="text"
-                   class="form-control">
+            <input class="text-box form-control" type="text" title="{{ todo.dateAdded }}" value="{{ todo.text }}" name="text">
             <br>
             <br>
             <button class="btn" type="submit" value="update">Update</button>
@@ -34,6 +36,6 @@ ent2 %}
             <button class="btn" type="submit" value="delete">Delete</button>
         </form>
         </p>
-
+        <!-- Same as other forms except, each to-do item has its own ID, this needs to be referred to -->
     {% endfor %}
 {% endblock %}
