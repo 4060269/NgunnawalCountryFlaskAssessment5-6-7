@@ -238,3 +238,14 @@ def photos():
         else:
             flash("The image upload has failed")
     return render_template("uploadphotos.html", title="Upload Photos", user=current_user, form=form)
+
+
+@app.route('/listallusers')
+@login_required
+def list_all_users():
+    if current_user.is_admin():
+        all_users = User.query.all()
+        return render_template("listAllUsers.html", title="All Active Users", user=current_user, users=all_users)
+    else:
+        flash("You are not allowed to access this page")
+        return redirect(url_for("homepage"))
