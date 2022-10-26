@@ -6,10 +6,9 @@
 
 {% block cellContent2 %}
     {% for user in users %}
-        <div class="row">
-            <p> <div class="col-md-4">{{ user.e mail_address }}</div> </p>
-            <p> <div class="col-md-4"><a href="/reset_password/{{ user.id }}">Reset Password</a></div> </p>
-        </div>
+        <p> <h3 style="font-size: 1.2rem; font-weight: bold; color: whitesmoke">Email: {{ user.email_address }}</h3>
+        </p>
+        <p><a href="/passwordreset/{{ user.id }}">Reset Password</a></p>
         <br>
         <br>
     {% endfor %}

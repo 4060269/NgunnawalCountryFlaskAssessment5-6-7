@@ -240,7 +240,7 @@ def photos():
     return render_template("uploadphotos.html", title="Upload Photos", user=current_user, form=form)
 
 
-@app.route('/listallusers')
+@app.route('/listallusers', methods=['GET', 'POST'])
 @login_required
 def list_all_users():
     if current_user.is_admin():
@@ -249,3 +249,16 @@ def list_all_users():
     else:
         flash("You are not allowed to access this page")
         return redirect(url_for("homepage"))
+
+
+@app.route('/passwordreset/<userid>', methods=['GET', 'POST'])
+@login_required
+def reset_user_password(userid):
+    form = ResetPasswordForm()
+    user = User.query.filter_by(id=userid).first()
+    if form.validate_on_submit():
+        user.set_password(form.new_password.data)
+        db.session.commit()
+        flash('Password has been reset for user {}'.format(user.name))
+        return redirect(url_for('homepage'))
+    return render_template("passwordreset.html", title='Reset Password', form=form, user=user)
