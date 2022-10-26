@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'template.html' %}
 
-</body>
-</html>
+{% block cellContent1 %}
+    <h2 class="section-header">List All Users</h2>
+{% endblock %}
+
+{% block cellContent2 %}
+    {% for user in users %}
+        <div class="row">
+            <p> <div class="col-md-4">{{ user.e mail_address }}</div> </p>
+            <p> <div class="col-md-4"><a href="/reset_password/{{ user.id }}">Reset Password</a></div> </p>
+        </div>
+        <br>
+        <br>
+    {% endfor %}
+{% endblock %}
