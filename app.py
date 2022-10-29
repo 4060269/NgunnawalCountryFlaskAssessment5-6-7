@@ -140,6 +140,7 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
+    # Simple flask login function to 'log out' current user session
     flash("Your have logged out")
     return redirect(url_for('homepage'))
 
@@ -147,12 +148,15 @@ def logout():
 @app.route('/history', methods=['GET', 'POST'])
 def history():
     return render_template("history.html", title="Ngunnawal Country | History", user=current_user)
+    # Basic route for history page as nothing on the page changes
 
 
 @app.route('/gallery', methods=['GET', 'POST'])
 def gallery():
     if current_user.is_anonymous:
         return render_template("galleryanonymous.html", title="Ngunnawal Country | Gallery", user=current_user)
+        # Show users that are not logged-in, a gallery page with no user photos so that only other logged-in users can
+        # see user photos
     else:
         user_images = Photos.query.filter_by(userid=current_user.id).all()
     return render_template("gallery.html", title="Ngunnawal Country | Gallery", user=current_user, images=user_images)
@@ -170,7 +174,8 @@ def reset_password():
         return redirect(url_for("homepage"))
     return render_template('passwordreset.html', title="Ngunnawal Country | Password Reset", form=form,
                            user=current_user)
-
+    # Directly change the password hash stored in db, in a prod, more code needed to store backups of users previous
+    # credentials
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -213,6 +218,7 @@ def view_contact_messages():
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    # To check if submitted file name is 'allowed' based on requirements
 
 
 @app.route('/uploadphotos', methods=['GET', 'POST'])
