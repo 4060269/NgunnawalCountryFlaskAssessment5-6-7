@@ -230,12 +230,14 @@ def photos():
         filename = secure_filename(new_image.filename)
 
         if new_image and allowed_file(filename):
-            # Get the file extension of the file.
+            # Get the file extension of the file
             file_ext = filename.split(".")[1]
             random_filename = str(uuid.uuid4())
             filename = random_filename + "." + file_ext
+            # Add and combine random characters to avoid overwriting other files, with the file extension at the end
 
             new_image.save(os.path.join(UPLOAD_FOLDER, filename))
+            # Push all photos to upload folder to keep all files in one place
             photo = Photos(title=form.title.data, filename=filename, userid=current_user.id)
             db.session.add(photo)
             db.session.commit()
