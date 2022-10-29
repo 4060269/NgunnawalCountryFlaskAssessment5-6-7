@@ -49,6 +49,7 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(255))
     password_hash = db.Column(db.String(255))
     user_level = db.Column(db.Integer)
+    active = db.Column(db.Boolean)
 
     # UserMixin is required to get properties of a user to be displayed
     # Limit data taken to 255 characters

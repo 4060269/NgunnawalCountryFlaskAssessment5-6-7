@@ -112,7 +112,7 @@ def edit_note(todo_id):
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        new_user = User(email_address=form.email_address.data, name=form.name.data, user_level=1)
+        new_user = User(email_address=form.email_address.data, name=form.name.data, user_level=1, active=1)
         new_user.set_password(form.password.data)
         db.session.add(new_user)
         db.session.commit()
@@ -128,8 +128,8 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email_address=form.email_address.data).first()
-        if user is None or not user.check_password(form.password.data):
-            flash("Invalid credentials")
+        if user is None or not user.check_password(form.password.data) or not user.active:
+            flash("Your password is incorrect or your account has been disabled, contact us to check this")
             return redirect(url_for('login'))
         login_user(user)
         flash("Your have logged in")
