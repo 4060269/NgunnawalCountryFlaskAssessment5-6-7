@@ -92,6 +92,7 @@ class Photos(db.Model):
     filename = db.Column(db.String(255))
     userid = db.Column(db.Integer)
     dateSubmitted = db.Column(db.DateTime)
+    active = db.Column(db.Boolean)
 
     # Taking and storing attributes of the uploaded image
     # Title and filename both are limited to avoid users overloading the storage server
