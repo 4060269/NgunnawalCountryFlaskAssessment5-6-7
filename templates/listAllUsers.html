@@ -8,12 +8,16 @@
     {% for user in users %}
         <p> <h3 style="font-size: 1.2rem; font-weight: bold; color: whitesmoke">Email: {{ user.email_address }}</h3></p>
         <p><a href="/passwordreset/{{ user.id }}">Reset Password</a></p>
+        <!-- Show each user's details to find the user we are looking for  -->
+
         {% if user.active %}
             <p> Account Enabled </p>
         {% else %}
             <p> Account Disabled </p>
         {% endif %}
         <p><a href="/userenable/{{ user.id }}">Enable/Disable Account</a></p>
+        <!-- Explicitly show account enabled or disabled to allow admin to check if user's account is disabled or their
+        password is wrong -->
         <br>
         <br>
     {% endfor %}

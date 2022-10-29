@@ -265,6 +265,7 @@ def reset_user_password(userid):
     return render_template("passwordreset.html", title='Ngunnawal Country | Administrator Reset Password', form=form,
                            user=user)
 
+
 @app.route('/userenable/<userid>')
 @login_required
 def user_enable(userid):

@@ -24,7 +24,8 @@
             <input type="checkbox" onclick="redirect('/todoedit/{{ todo.id }}')"
                    data-target="/todoedit/{{ todo.id }}"
                    name="done">
-            <input class="text-box form-control" type="text" title="{{ todo.dateAdded }}" value="{{ todo.text }}" name="text">
+            <input class="text-box form-control" type="text" title="{{ todo.dateAdded }}" value="{{ todo.text }}"
+                   name="text">
             <br>
             <br>
             <button class="btn" type="submit" value="update">Update</button>
