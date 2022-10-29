@@ -6,9 +6,14 @@
 
 {% block cellContent2 %}
     {% for user in users %}
-        <p> <h3 style="font-size: 1.2rem; font-weight: bold; color: whitesmoke">Email: {{ user.email_address }}</h3>
-        </p>
+        <p> <h3 style="font-size: 1.2rem; font-weight: bold; color: whitesmoke">Email: {{ user.email_address }}</h3></p>
         <p><a href="/passwordreset/{{ user.id }}">Reset Password</a></p>
+        {% if user.active %}
+            <p> Account Enabled </p>
+        {% else %}
+            <p> Account Disabled </p>
+        {% endif %}
+        <p><a href="/userenable/{{ user.id }}">Enable/Disable Account</a></p>
         <br>
         <br>
     {% endfor %}
