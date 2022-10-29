@@ -245,7 +245,8 @@ def photos():
 def list_all_users():
     if current_user.is_admin():
         all_users = User.query.all()
-        return render_template("listAllUsers.html", title="Ngunnawal Country | All Active Users", user=current_user, users=all_users)
+        return render_template("listAllUsers.html", title="Ngunnawal Country | All Active Users", user=current_user,
+                               users=all_users)
     else:
         flash("You are not allowed to access this page")
         return redirect(url_for("homepage"))
@@ -261,4 +262,17 @@ def reset_user_password(userid):
         db.session.commit()
         flash('Password has been reset for user {}'.format(user.name))
         return redirect(url_for('homepage'))
-    return render_template("passwordreset.html", title='Ngunnawal Country | Administrator Reset Password', form=form, user=user)
+    return render_template("passwordreset.html", title='Ngunnawal Country | Administrator Reset Password', form=form,
+                           user=user)
+
+@app.route('/userenable/<userid>')
+@login_required
+def user_enable(userid):
+    if current_user.is_admin():
+        user = User.query.filter_by(id=userid).first()
+        user.active = not user.active
+        db.session.commit()
+        return redirect(url_for("list_all_users"))
+    else:
+        flash("You are not allowed to access this page")
+        return redirect(url_for("homepage"))
