@@ -242,7 +242,7 @@ def photos():
             photo = Photos(title=form.title.data, filename=filename, userid=current_user.id)
             db.session.add(photo)
             db.session.commit()
-            flash("Image has been successfully uploaded!")
+            flash("Image has been successfully uploaded, view it in Gallery")
             return redirect(url_for("photos"))
         else:
             flash("The image upload has failed")
