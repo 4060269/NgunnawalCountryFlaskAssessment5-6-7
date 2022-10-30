@@ -154,6 +154,7 @@ def history():
 @app.route('/gallery', methods=['GET', 'POST'])
 def gallery():
     if current_user.is_anonymous:
+        flash("You need to be logged in to see the User Photos below.")
         return render_template("galleryanonymous.html", title="Ngunnawal Country | Gallery", user=current_user)
         # Show users that are not logged-in, a gallery page with no user photos so that only other logged-in users can
         # see user photos
