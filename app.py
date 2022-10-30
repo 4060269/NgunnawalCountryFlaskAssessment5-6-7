@@ -269,7 +269,7 @@ def reset_user_password(userid):
     if form.validate_on_submit():
         user.set_password(form.new_password.data)
         db.session.commit()
-        flash('Password has been reset for user {}'.format(user.name))
+        flash('Password has been reset for {}'.format(user.email_address))
         return redirect(url_for('homepage'))
     return render_template("passwordreset.html", title='Ngunnawal Country | Administrator Reset Password', form=form,
                            user=user)
