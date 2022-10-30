@@ -254,7 +254,7 @@ def photos():
 def list_all_users():
     if current_user.is_admin():
         all_users = User.query.all()
-        return render_template("listallusers.html", title="Ngunnawal Country | All Active Users", user=current_user,
+        return render_template("listallusers.html", title="Ngunnawal Country | All Users", user=current_user,
                                users=all_users)
     else:
         flash("You are not allowed to access this page")
