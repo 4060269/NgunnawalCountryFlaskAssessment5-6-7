@@ -112,7 +112,7 @@ def edit_note(todo_id):
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        new_user = User(email_address=form.email_address.data, name=form.name.data, user_level=1)
+        new_user = User(email_address=form.email_address.data, name=form.name.data, user_level=1, active=1)
         new_user.set_password(form.password.data)
         db.session.add(new_user)
         db.session.commit()
@@ -128,8 +128,8 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email_address=form.email_address.data).first()
-        if user is None or not user.check_password(form.password.data):
-            flash("Invalid credentials")
+        if user is None or not user.check_password(form.password.data) or not user.active:
+            flash("Your password is incorrect or your account has been disabled, contact us to check this")
             return redirect(url_for('login'))
         login_user(user)
         flash("Your have logged in")
@@ -140,6 +140,7 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
+    # Simple flask login function to 'log out' current user session
     flash("Your have logged out")
     return redirect(url_for('homepage'))
 
@@ -147,12 +148,16 @@ def logout():
 @app.route('/history', methods=['GET', 'POST'])
 def history():
     return render_template("history.html", title="Ngunnawal Country | History", user=current_user)
+    # Basic route for history page as nothing on the page changes
 
 
 @app.route('/gallery', methods=['GET', 'POST'])
 def gallery():
     if current_user.is_anonymous:
+        flash("You need to be logged in to see the User Photos below.")
         return render_template("galleryanonymous.html", title="Ngunnawal Country | Gallery", user=current_user)
+        # Show users that are not logged-in, a gallery page with no user photos so that only other logged-in users can
+        # see user photos
     else:
         user_images = Photos.query.filter_by(userid=current_user.id).all()
     return render_template("gallery.html", title="Ngunnawal Country | Gallery", user=current_user, images=user_images)
@@ -170,7 +175,8 @@ def reset_password():
         return redirect(url_for("homepage"))
     return render_template('passwordreset.html', title="Ngunnawal Country | Password Reset", form=form,
                            user=current_user)
-
+    # Directly change the password hash stored in db, in a prod, more code needed to store backups of users previous
+    # credentials
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -213,6 +219,7 @@ def view_contact_messages():
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    # To check if submitted file name is 'allowed' based on requirements
 
 
 @app.route('/uploadphotos', methods=['GET', 'POST'])
@@ -224,17 +231,58 @@ def photos():
         filename = secure_filename(new_image.filename)
 
         if new_image and allowed_file(filename):
-            # Get the file extension of the file.
+            # Get the file extension of the file
             file_ext = filename.split(".")[1]
             random_filename = str(uuid.uuid4())
             filename = random_filename + "." + file_ext
+            # Add and combine random characters to avoid overwriting other files, with the file extension at the end
 
             new_image.save(os.path.join(UPLOAD_FOLDER, filename))
+            # Push all photos to upload folder to keep all files in one place
             photo = Photos(title=form.title.data, filename=filename, userid=current_user.id)
             db.session.add(photo)
             db.session.commit()
-            flash("Image has been successfully uploaded!")
+            flash("Image has been successfully uploaded, view it in Gallery")
             return redirect(url_for("photos"))
         else:
             flash("The image upload has failed")
-    return render_template("uploadphotos.html", title="Upload Photos", user=current_user, form=form)
+    return render_template("uploadphotos.html", title="Ngunnawal Country | Upload Photos", user=current_user, form=form)
+
+
+@app.route('/listallusers', methods=['GET', 'POST'])
+@login_required
+def list_all_users():
+    if current_user.is_admin():
+        all_users = User.query.all()
+        return render_template("listallusers.html", title="Ngunnawal Country | All Users", user=current_user,
+                               users=all_users)
+    else:
+        flash("You are not allowed to access this page")
+        return redirect(url_for("homepage"))
+
+
+@app.route('/passwordreset/<userid>', methods=['GET', 'POST'])
+@login_required
+def reset_user_password(userid):
+    form = ResetPasswordForm()
+    user = User.query.filter_by(id=userid).first()
+    if form.validate_on_submit():
+        user.set_password(form.new_password.data)
+        db.session.commit()
+        flash('Password has been reset for {}'.format(user.email_address))
+        return redirect(url_for('homepage'))
+    return render_template("passwordreset.html", title='Ngunnawal Country | Administrator Reset Password', form=form,
+                           user=user)
+
+
+@app.route('/userenable/<userid>')
+@login_required
+def user_enable(userid):
+    if current_user.is_admin():
+        user = User.query.filter_by(id=userid).first()
+        user.active = not user.active
+        db.session.commit()
+        return redirect(url_for("list_all_users"))
+    else:
+        flash("You are not allowed to access this page")
+        return redirect(url_for("homepage"))
